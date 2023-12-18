@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,11 +25,13 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _controller.OnMoveEvent += SetMoveDirection;
+        _controller.OnJumpEvent += Jump;
     }
 
     private void FixedUpdate()
     {
         Move(_direction);
+
     }
 
     #endregion
@@ -41,9 +44,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector2 direction)
     {
-        direction = direction * _status.CurrentStatus.moveSpeed;
-        _rigidbody.velocity = direction;
+        Vector2 currentVelocity = _rigidbody.velocity;
+        currentVelocity.x = direction.x * _status.CurrentStatus.moveSpeed;
+        _rigidbody.velocity = currentVelocity;
     }
+    #endregion
+
+    #region Jump
+    private void Jump()
+    {
+        Debug.Log(_status.CurrentStatus.jumpPower);
+        _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.jumpPower, ForceMode2D.Impulse);
+    }
+
     #endregion
 
 }

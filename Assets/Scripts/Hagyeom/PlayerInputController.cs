@@ -11,5 +11,10 @@ public class PlayerInputController : CharacterController
         Vector2 moveInput = value.Get<Vector2>().normalized;
         CallMoveEvent(moveInput);
     }
+
+    public void OnJump()
+    {
+        CallJumpEvent();
+    }
     #endregion
 }
