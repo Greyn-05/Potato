@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller.OnMoveEvent += SetMoveDirection;
         _controller.OnJumpEvent += Jump;
+        _controller.OnLookEvent += FlipPlayer;
         lastJumpTime = Time.time - _status.CurrentStatus.jumpCooldown;
     }
 
@@ -63,4 +64,14 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    #region LookFlip
+    private void FlipPlayer(Vector2 lookDirection)
+    {
+        float PlayerX = gameObject.transform.localScale.x;
+        if((lookDirection.x > 0 && PlayerX > 0f) || (lookDirection.x < 0 && PlayerX < 0f))
+        {
+            gameObject.transform.localScale = new Vector3 (-gameObject.transform.localScale.x, 1, 1);
+        }
+    }
+    #endregion
 }

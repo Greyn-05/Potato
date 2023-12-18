@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
+    public event Action<Vector2> OnLookEvent;
 
 
     public void CallMoveEvent(Vector2 direction)
@@ -18,6 +19,11 @@ public class CharacterController : MonoBehaviour
     public void CallJumpEvent()
     {
         OnJumpEvent?.Invoke();
+    }
+
+    public void CallLookEvent(Vector2 lookDirection)
+    {
+        OnLookEvent?.Invoke(lookDirection);
     }
 
 }

@@ -16,5 +16,11 @@ public class PlayerInputController : CharacterController
     {
         CallJumpEvent();
     }
+
+    public void OnLook(InputValue value)
+    {
+        Vector2 lookInput = value.Get<Vector2>().normalized;
+        CallLookEvent(lookInput);
+    }
     #endregion
 }
