@@ -23,17 +23,23 @@ public class EnemyAttack : MonoBehaviour
             // 플레이어가 공격 범위 안에 있고, 충분한 쿨다운 시간이 지났는지 확인
             if (distanceToPlayer < attackRange && Time.time > lastAttackTime + (1f / enemyData.attackSpeed))
             {
-                AttackPlayer(); // 공격 실행
+                AttackToPlayer(); // 공격 실행
             }
         }
     }
-
-    void AttackPlayer()
+    protected virtual void AttackToPlayer()
     {
-        animator.SetTrigger("attack"); // 'attack' 트리거로 공격 애니메이션 재생
+        animator.SetTrigger("attack"); // 공격 애니메이션 재생
         lastAttackTime = Time.time; // 마지막 공격 시간 갱신
+    }
 
-        // 추가적인 공격 처리 로직 구현 (예: 플레이어 체력 감소)
-        Debug.Log("플레이어에게 " + enemyData.damage + "만큼 데미지를 줍니다.");
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 플레이어에게 데미지 적용 로직
+            // 이 부분에서 플레이어의 체력을 감소시키는 로직을 구현합니다.
+            Debug.Log("플레이어에게 " + enemyData.damage + "만큼 데미지를 줍니다.");
+        }
     }
 }

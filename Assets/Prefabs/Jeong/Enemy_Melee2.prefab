@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 5198239901524806762}
   - component: {fileID: 1646151061004098665}
   - component: {fileID: 4890921967721072919}
-  - component: {fileID: 1894590941238692888}
+  - component: {fileID: 2221664707662948586}
   m_Layer: 0
   m_Name: Enemy_Melee2
   m_TagString: Enemy
@@ -449,7 +449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4257422641565858584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.99, y: 3.16, z: 0}
+  m_LocalPosition: {x: -3.63, y: -3.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 0d71395c89b572a40b2ba75bd5b202d0, type: 2}
---- !u!114 &1894590941238692888
+--- !u!114 &2221664707662948586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4257422641565858584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cf7bab08f9f634d99b6d4e29585f61, type: 3}
+  m_Script: {fileID: 11500000, guid: dc40800083f86da4cbac35068b05b108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 0d71395c89b572a40b2ba75bd5b202d0, type: 2}
