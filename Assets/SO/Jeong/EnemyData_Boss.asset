@@ -19,5 +19,5 @@ MonoBehaviour:
   attackSpeed: 0.8
   detectionRange: 10
   moveSpeed: 1
-  jumpForce: 10
+  jumpForce: 20
   jumpCooldown: 5
