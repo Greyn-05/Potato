@@ -70,6 +70,7 @@ public class CharacterStatusHandler : MonoBehaviour
         baseStatus.attackSpeed  = baseStatus.commonStatus.attackSpeed;
         baseStatus.exp = baseStatus.commonStatus.exp;
         baseStatus.jumpPower = baseStatus.commonStatus.jumpPower;
+        baseStatus.jumpCooldown = baseStatus.commonStatus.jumpCooldown;
         baseStatus.target = baseStatus.commonStatus.target;
     }
 

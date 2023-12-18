@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _direction;
     private Rigidbody2D _rigidbody;
     private CharacterStatusHandler _status;
+    private float lastJumpTime;
+
     #endregion
 
     #region Init
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller.OnMoveEvent += SetMoveDirection;
         _controller.OnJumpEvent += Jump;
+        lastJumpTime = Time.time - _status.CurrentStatus.jumpCooldown;
     }
 
     private void FixedUpdate()
@@ -33,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
         Move(_direction);
 
     }
-
     #endregion
 
     #region Move
@@ -53,10 +55,12 @@ public class PlayerMovement : MonoBehaviour
     #region Jump
     private void Jump()
     {
-        Debug.Log(_status.CurrentStatus.jumpPower);
-        _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.jumpPower, ForceMode2D.Impulse);
+        if (Time.time > lastJumpTime + _status.CurrentStatus.jumpCooldown)
+        {
+            _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.jumpPower, ForceMode2D.Impulse);
+            lastJumpTime = Time.time;
+        }
     }
-
     #endregion
 
 }
