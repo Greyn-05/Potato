@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _controller;
     private Vector2 _direction;
     private Rigidbody2D _rigidbody;
+    private CharacterStatusHandler _status;
     #endregion
 
     #region Init
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        _status = GetComponent<CharacterStatusHandler>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -31,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-
+    #region Move
     private void SetMoveDirection(Vector2 direction)
     {
         this._direction = direction;
@@ -39,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector2 direction)
     {
-        direction = direction * 5;
+        direction = direction * _status.CurrentStatus.moveSpeed;
         _rigidbody.velocity = direction;
     }
-
+    #endregion
 
 }
