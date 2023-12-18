@@ -16,7 +16,7 @@ public class CreateSlots : MonoBehaviour
     }
     public void CreateSlot()
     {
-        for(int i = 0; i < 20; i++)
+        for(int i = 0; i < 25; i++)
         {
             Inventory.instance.itemSlotList.Add(Instantiate(slot, gameObject.transform).GetComponent<Slot>());
         }
