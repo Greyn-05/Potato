@@ -35,9 +35,7 @@ public class CharacterStatusHandler : MonoBehaviour
         CurrentStatus = new CharacterStatus { commonStatus = commonStatus };
         if(CurrentStatus.commonStatus != null)
         {
-            CurrentStatus.hp = baseStatus.hp;
-            CurrentStatus.exp = baseStatus.exp;
-            CurrentStatus.target = baseStatus.target;
+            CurrentStatus = baseStatus;
         }
 
         // characterStatus ¼öÁ¤
@@ -71,6 +69,7 @@ public class CharacterStatusHandler : MonoBehaviour
         baseStatus.moveSpeed = baseStatus.commonStatus.moveSpeed;
         baseStatus.attackSpeed  = baseStatus.commonStatus.attackSpeed;
         baseStatus.exp = baseStatus.commonStatus.exp;
+        baseStatus.jumpPower = baseStatus.commonStatus.jumpPower;
         baseStatus.target = baseStatus.commonStatus.target;
     }
 
@@ -82,6 +81,7 @@ public class CharacterStatusHandler : MonoBehaviour
         CurrentStatus.def = operation(CurrentStatus.def, newModifier.def);
         CurrentStatus.attackSpeed = operation(CurrentStatus.attackSpeed, newModifier.attackSpeed);
         CurrentStatus.moveSpeed = operation(CurrentStatus.moveSpeed, newModifier.moveSpeed);
+        CurrentStatus.jumpPower = operation(CurrentStatus.jumpPower, newModifier.jumpPower);
 
     }
 
