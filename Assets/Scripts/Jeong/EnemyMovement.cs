@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public EnemyMovementSO enemyStats; // EnemyStatsSO ScriptableObject 참조
+    public EnemyDataSO enemyStats; // EnemyStatsSO ScriptableObject 참조
     private Rigidbody2D _rigidBody2D;
     private Transform target;
     private float lastJumpTime;

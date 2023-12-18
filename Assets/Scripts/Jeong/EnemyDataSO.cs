@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyData_", menuName = "Data/EnemyMelee", order = 1)]
-public class EnemyMovementSO : ScriptableObject
+public class EnemyDataSO : ScriptableObject
 {
     public float hp;
     public float maxHp;
