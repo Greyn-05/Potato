@@ -33,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
                 if (enemyDeath != null)
                 {
                     float damage = _status.CurrentStatus.atk; // 플레이어의 공격력을 가져옵니다.
-                    //enemyDeath.TakeDamage(damage); // 적에게 데미지를 적용합니다.
+                    enemyDeath.TakeDamage(damage); // 적에게 데미지를 적용합니다.
                 }
             }
         }

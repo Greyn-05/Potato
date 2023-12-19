@@ -29,6 +29,15 @@ public class HealthSystem : MonoBehaviour
     {
         CurrentHealth = _statusHandler.CurrentStatus.maxHealth;
     }
+    private void Update()
+    {
+        if (_healthLastChange < healthChangeDelay)
+        {
+            _healthLastChange += Time.deltaTime;
+            
+        }
+    }
+
     #endregion
 
     #region ChangeHealthEvent
@@ -41,6 +50,8 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth += change;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
+        Debug.Log(CurrentHealth);
+        Debug.Log(change);
 
         if(change < 0) OnDamage?.Invoke();
         else OnHeal?.Invoke();
