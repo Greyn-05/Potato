@@ -295,9 +295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapPrefabs:
-  - prefab: {fileID: 4618255059168154615, guid: 0ee53571d1a28ec44badf9a796074a7f, type: 3}
-    width: 3
-    height: 1
   - prefab: {fileID: 4253033663244192348, guid: dbb25740d72d0644bb6bc9ebe23bbd02, type: 3}
     width: 4
     height: 1

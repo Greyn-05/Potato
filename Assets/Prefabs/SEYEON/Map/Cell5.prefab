@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: -8619150418660999886}
   m_Layer: 0
   m_Name: Cell5
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
