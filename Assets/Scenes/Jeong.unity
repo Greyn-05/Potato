@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Melee1
       objectReference: {fileID: 0}
+    - target: {fileID: 3171483926963243647, guid: 579f1ddab810a25418b180b6a13e388b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -336,6 +340,10 @@ PrefabInstance:
     - target: {fileID: 4257422641565858584, guid: f4a032b5d6fd07740913b99389b565ed, type: 3}
       propertyPath: m_Name
       value: Enemy_Melee2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257422641565858584, guid: f4a032b5d6fd07740913b99389b565ed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4257422641565858587, guid: f4a032b5d6fd07740913b99389b565ed, type: 3}
       propertyPath: m_RootOrder
@@ -1815,6 +1823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8422276864327897534, guid: 5d1ab9b0228d05a40832b62ab4035c82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9198716130994172071, guid: 5d1ab9b0228d05a40832b62ab4035c82, type: 3}
       propertyPath: enemyStats
       value: 
@@ -1891,6 +1903,10 @@ PrefabInstance:
     - target: {fileID: 4286921269205742036, guid: d1017599b656a27409b59197d065f3ae, type: 3}
       propertyPath: m_Name
       value: Enemy_Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286921269205742036, guid: d1017599b656a27409b59197d065f3ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6345678487686939692, guid: d1017599b656a27409b59197d065f3ae, type: 3}
       propertyPath: m_IsActive
