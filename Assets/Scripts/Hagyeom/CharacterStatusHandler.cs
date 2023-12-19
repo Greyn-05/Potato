@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
@@ -11,12 +12,19 @@ public class CharacterStatusHandler : MonoBehaviour
     [SerializeField] private CharacterStatus baseStatus;
     public CharacterStatus CurrentStatus { get; private set; }
     public List<CharacterStatus> statsModifiers = new List<CharacterStatus>();
+    private PlayerItem _playerItem;
     #endregion
 
     #region Init
     private void Awake()
     {
         UpdatePlayerStatus();
+        _playerItem = GetComponent<PlayerItem>();
+    }
+
+    private void Start()
+    {
+        _playerItem.OnPotionEnd += RemoveStatModifier;
     }
     #endregion
 
