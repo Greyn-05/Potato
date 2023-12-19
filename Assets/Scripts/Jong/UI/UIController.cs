@@ -4,9 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-
-    private GameObject status;
-    private GameObject gameOverUI;
+    public GameObject status;
+    public GameObject gameOverUI;
     private bool statVisible = false;
 
     private void Update()
@@ -16,44 +15,28 @@ public class UIController : MonoBehaviour
             ToggleUI();
         }
     }
+
     public void Gameover()
     {
         gameOverUI.SetActive(true);
     }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     public void ExitMenu()
     {
         SceneManager.LoadScene("StartScene");
     }
-   
+
 
     private void ToggleUI()
     {
         statVisible = !statVisible;
 
-        if (statVisible)
-        {
-            ShowUI();
-        }
-        else
-        {
-            HideUI();
-        }
-        void ShowUI()
-        {
-            // Stat Canvas를 활성화하여 UI를 보여줍니다.
-            status.gameObject.SetActive(true);
-            Debug.Log("생겨라!");
-        }
-
-        void HideUI()
-        {
-            // Stat Canvas를 비활성화하여 UI를 숨깁니다.
-            status.gameObject.SetActive(false);
-            Debug.Log("사라져라!");
-        }
+        status.gameObject.SetActive(statVisible);
+        Debug.Log(statVisible ? "생겨라!" : "사라져라!");
     }
 }
