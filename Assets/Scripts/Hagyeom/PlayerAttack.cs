@@ -20,14 +20,22 @@ public class PlayerAttack : MonoBehaviour
         _status = GetComponent<CharacterStatusHandler>();
     }
 
-    
+
     private void Attack()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(_pos.position, _boxSize, 0);
-        
-        foreach(Collider2D collider in colliders)
+
+        foreach (Collider2D collider in colliders)
         {
-            Debug.Log(collider.tag);
+            if (collider.CompareTag("Enemy")) // 콜라이더가 적인지 확인합니다.
+            {
+                EnemyDeath enemyDeath = collider.GetComponent<EnemyDeath>();
+                if (enemyDeath != null)
+                {
+                    float damage = _status.CurrentStatus.atk; // 플레이어의 공격력을 가져옵니다.
+                    //enemyDeath.TakeDamage(damage); // 적에게 데미지를 적용합니다.
+                }
+            }
         }
     }
 

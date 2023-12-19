@@ -27,7 +27,7 @@ public class HealthSystem : MonoBehaviour
     }
     private void Start()
     {
-        CurrentHealth = _statusHandler.CurrentStatus.hp;
+        CurrentHealth = _statusHandler.CurrentStatus.maxHealth;
     }
     #endregion
 
@@ -41,8 +41,6 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth += change;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
-
-        _statusHandler.CurrentStatus.hp = CurrentHealth;
 
         if(change < 0) OnDamage?.Invoke();
         else OnHeal?.Invoke();

@@ -12,7 +12,7 @@ public enum StatusChangeType
 }
 
 [Serializable]
-public class CharacterStatus
+public class CharacterStatus 
 {
     #region Field
     public StatusChangeType statusChangeType;
