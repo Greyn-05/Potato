@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStatus:
-    statusChangeType: 2
+    statusChangeType: 0
     maxHealth: 0
     hp: 0
     atk: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
     attackSpeed: 0
     jumpPower: 0
     jumpCooldown: 0
-    commonStatus: {fileID: 11400000, guid: ec090be1c73b1754f90adb33f15ca6d4, type: 2}
+    commonStatus: {fileID: 11400000, guid: b7860e695ae14154084b414ae6805ae9, type: 2}
   statsModifiers: []
 --- !u!1 &478865650
 GameObject:

@@ -10,11 +10,12 @@ public class Item : MonoBehaviour
 {
     [Header("ItemInformation")]
     public ItemType type;
-
+    public int itemPotionRecoveryAmount;
 
     [SerializeField]
     private List<CharacterStatus> statsModifier;
     CharacterStatusHandler characterStatusHandler;
+    HealthSystem playerHealth;
     public GameObject itemImage;
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class Item : MonoBehaviour
         if (collision.gameObject.tag == "testplayer")
         {
             characterStatusHandler = collision.GetComponent<CharacterStatusHandler>();
+            playerHealth = collision.GetComponent<HealthSystem>();
             ClassifyItem(type);
             Destroy(gameObject);
         }
@@ -42,10 +44,7 @@ public class Item : MonoBehaviour
         switch (itemtype)
         {
             case ItemType.HpPotion: // 플레이어의 회복할때
-                foreach (CharacterStatus stat in statsModifier)
-                {
-                    characterStatusHandler.AddStatModifier(stat);
-                }
+                playerHealth.ChangeHealth(itemPotionRecoveryAmount);
                 break;
             case ItemType.Armor:
                 for (int i = 0; i < Inventory.instance.itemSlotList.Count; i++)
