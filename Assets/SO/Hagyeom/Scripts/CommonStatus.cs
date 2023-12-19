@@ -17,8 +17,4 @@ public class CommonStatus : ScriptableObject
     public float attackSpeed;
     public float jumpPower;
     public float jumpCooldown;
-    public float exp;
-    public LayerMask target;
-
-
 }
