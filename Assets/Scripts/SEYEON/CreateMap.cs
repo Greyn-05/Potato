@@ -42,7 +42,7 @@ public class CreateMap : MonoBehaviour
 
     void GenerateMap()
     {
-        int maxPrefabCount = 15;
+        int maxPrefabCount = 20;
         int createdPrefabCount = 0;
         int attemptCount = 0; // 탐색 시도 횟수
 
@@ -68,7 +68,7 @@ public class CreateMap : MonoBehaviour
                     float horizontalDistance = Mathf.Abs(prefabData.position.x - nextPosition.x) - (prefabData.width / 2 + prefabWidth / 2);
                     float verticalDistance = Mathf.Abs(prefabData.position.y - nextPosition.y) - (prefabData.height / 2 + prefabHeight / 2);
 
-                    if (horizontalDistance < minDistanceBetweenPrefabs && verticalDistance < minHeightDifference)
+                    if (horizontalDistance < 0 || verticalDistance < 0)
                     {
                         positionIsValid = false; // 겹치면 false
                         break;
@@ -76,9 +76,10 @@ public class CreateMap : MonoBehaviour
                 }
 
                 attemptCount++;
+
                 if (attemptCount > 100)
                 {
-                    Debug.LogError("ERROR");
+                    Debug.LogError("무시");
                     break;
                 }
             }
@@ -86,14 +87,11 @@ public class CreateMap : MonoBehaviour
 
             if (positionIsValid)
             {
-                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // 프리팹 생성
-                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight }); // 생성된 프리팹 위치, 길이 저장
+                GameObject newPrefab = Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // 프리팹 생성
+                createdPrefabsData.Add(new PrefabData{ position = nextPosition, width = mapPrefabData.width, height = mapPrefabData.height}); // 생성된 프리팹 위치, 길이 저장
+
                 createdPrefabCount++; // 프리팹 수 ++
                 attemptCount = 0; // 횟수 초기화
-            }
-            else
-            {
-                break;
             }
         }
     }
