@@ -13,6 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int IsHit = Animator.StringToHash("IsHit");
+    private static readonly int IsDead = Animator.StringToHash("IsDead");
 
     protected virtual void Awake()
     {
@@ -26,6 +27,7 @@ public class PlayerAnimation : MonoBehaviour
         _controller.OnAttackEvent += Attacking;
         _controller.OnMoveEvent += Move;
         _healthSystem.OnDamage += Hit;
+        _healthSystem.OnDeath += Death;
     }
 
     private void Attacking()
@@ -41,5 +43,10 @@ public class PlayerAnimation : MonoBehaviour
     private void Hit()
     {
         _animator.SetTrigger(IsHit);
+    }
+
+    private void Death()
+    {
+        _animator.SetBool(IsDead, true);
     }
 }

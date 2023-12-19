@@ -7,6 +7,19 @@ using UnityEngine;
 public class PlayerItem : MonoBehaviour
 {
     public event Action<CharacterStatus> OnPotionEnd;
+    public CharacterStatus status;
+    public bool potionTime = false;
+    public float time;
+
+
+    private void Update()
+    {
+        if (potionTime)
+        {
+            potionTime = false;
+            CallPosionEndEvent(status, time);
+        }
+    }
 
     public void CallPosionEndEvent(CharacterStatus status, float time)
     {

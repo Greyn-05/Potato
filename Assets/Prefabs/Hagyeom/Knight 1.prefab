@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3436327446642876343}
   - component: {fileID: -1103118461318011365}
   - component: {fileID: 2547675001718300698}
+  - component: {fileID: 6918980550695780729}
   m_Layer: 0
   m_Name: Knight 1
   m_TagString: Player
@@ -214,10 +215,6 @@ MonoBehaviour:
     attackSpeed: 0
     jumpPower: 0
     jumpCooldown: 0
-    exp: 0
-    target:
-      serializedVersion: 2
-      m_Bits: 0
     commonStatus: {fileID: 11400000, guid: 4f61facd72aaaaa4b8f58383fc01b713, type: 2}
   statsModifiers: []
 --- !u!114 &3436327446642876343
@@ -259,6 +256,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pos: {fileID: 3268182758250434847}
   _boxSize: {x: 1, y: 2}
+--- !u!114 &6918980550695780729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010755293042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced349a60badf6f45baee02f9918c420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000011164445256
 GameObject:
   m_ObjectHideFlags: 0
