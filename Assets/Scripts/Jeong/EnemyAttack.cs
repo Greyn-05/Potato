@@ -8,13 +8,13 @@ public class EnemyAttack : MonoBehaviour
     private Animator animator; // 애니메이터 컴포넌트
     private float lastAttackTime; // 마지막 공격 시간 기록
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; // 플레이어 Transform 찾기
         animator = GetComponent<Animator>(); // 애니메이터 컴포넌트 가져오기
     }
 
-    void Update()
+    private void Update()
     {
         if (player != null)
         {
@@ -33,7 +33,7 @@ public class EnemyAttack : MonoBehaviour
         lastAttackTime = Time.time; // 마지막 공격 시간 갱신
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
