@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        _controller.OnAttackEvent += Attck;
+        
     }
 
 
