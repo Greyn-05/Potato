@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1181149995059121252}
   - component: {fileID: 8660130395015103684}
   - component: {fileID: 2088510756253787299}
+  - component: {fileID: 9009815964030338276}
   m_Layer: 5
   m_Name: HPPotionImage
   m_TagString: Untagged
@@ -102,3 +103,26 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &9009815964030338276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958380912708155029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa0f6b5637fe2748b6544ee16a3b59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemPlusHP: 0
+  itemPlusMP: 0
+  itemPlusDamage: 0
+  itemPlusSpeed: 0
+  itemMinusHP: 0
+  itemMinusMP: 0
+  itemMinusDamage: 0
+  itemMinusSpeed: 0
+  itemPotionRecovery: 50
+  itemImage: {fileID: 0}

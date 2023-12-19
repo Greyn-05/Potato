@@ -9,6 +9,9 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanel;
     public List<Slot> itemSlotList = new List<Slot>();
 
+    public int equipWeaponCount;
+    public int equipArmorCount;
+
     private void Awake()
     {
             instance = this; 
@@ -16,6 +19,7 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         OnOffInventoryPanel();
+        
     }
     private void OnOffInventoryPanel()
     {
