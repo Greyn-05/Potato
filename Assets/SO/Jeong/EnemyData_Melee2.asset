@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d20cfaab19b8c4ab9c676beabb21b1, type: 3}
   m_Name: EnemyData_Melee2
   m_EditorClassIdentifier: 
+  maxHealth: 200
   hp: 200
-  maxHp: 20
-  damage: 10
-  defence: 2
-  attackSpeed: 1
-  detectionRange: 10
+  atk: 10
+  def: 1
   moveSpeed: 1.5
-  jumpForce: 5
+  attackSpeed: 1.2
+  jumpPower: 2
   jumpCooldown: 2
+  detectionRange: 10
