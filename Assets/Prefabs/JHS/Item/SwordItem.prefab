@@ -98,8 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa0f6b5637fe2748b6544ee16a3b59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
+  itemPlusHP: 0
+  itemPlusMP: 0
+  itemPlusDamage: 10
+  itemPlusSpeed: 0
+  itemMinusHP: 0
+  itemMinusMP: 0
+  itemMinusDamage: 0
+  itemMinusSpeed: 0
+  itemPotionRecovery: 0
   itemImage: {fileID: 2146390690266190155, guid: 7f4336520f0bf594e8dc96cb93ac9589, type: 3}
-  inventoryCanvas: {fileID: 0}
 --- !u!61 &4529247184451966977
 BoxCollider2D:
   m_ObjectHideFlags: 0
