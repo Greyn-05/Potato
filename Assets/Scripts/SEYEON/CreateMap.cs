@@ -77,7 +77,7 @@ public class CreateMap : MonoBehaviour
 
                 attemptCount++;
 
-                if (attemptCount > 100)
+                if (attemptCount > 50)
                 {
                     Debug.LogError("¹«½Ã");
                     break;

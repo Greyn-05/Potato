@@ -295,13 +295,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapPrefabs:
-  - prefab: {fileID: 4253033663244192348, guid: dbb25740d72d0644bb6bc9ebe23bbd02, type: 3}
+  - prefab: {fileID: 6672019998726766219, guid: 52e84fc127c8c3a44bc1c0e3e76e74a5, type: 3}
     width: 4
     height: 1
-  - prefab: {fileID: 9177878454817140838, guid: f35dfbb89f5f15d42b65b1a26bb49a8f, type: 3}
+  - prefab: {fileID: 2381036492797474115, guid: d3f9a010288f75f4c902a21f59d29ba3, type: 3}
     width: 5
     height: 1
-  - prefab: {fileID: 8355937364960876374, guid: 8090340ff5408ba42a93b0527b732535, type: 3}
+  - prefab: {fileID: 7725704067845415350, guid: 3351a8d4b2412a141808274a211690a2, type: 3}
     width: 6
     height: 1
   maxJumpWidth: 3
@@ -309,8 +309,8 @@ MonoBehaviour:
   startPosition: {x: -17, y: -8}
   mapLength: 40
   mapHeight: 15
-  minDistanceBetweenPrefabs: 3
-  minHeightDifference: 3
+  minDistanceBetweenPrefabs: 2
+  minHeightDifference: 2
 --- !u!4 &2072738813
 Transform:
   m_ObjectHideFlags: 0
