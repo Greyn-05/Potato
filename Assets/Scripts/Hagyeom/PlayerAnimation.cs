@@ -25,11 +25,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _controller.OnAttackEvent += Attacking;
         _controller.OnMoveEvent += Move;
-
-        if (_healthSystem != null)
-        {
-            _healthSystem.OnDamage += Hit;
-        }
+        _healthSystem.OnDamage += Hit;
     }
 
     private void Attacking()

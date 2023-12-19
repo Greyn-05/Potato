@@ -91,6 +91,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceedb733ac90cad45a7dd6c1d8f1738d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionPanel: {fileID: 0}
+  equipUI: {fileID: 0}
+  statsModifier:
+  - statusChangeType: 0
+    maxHealth: 0
+    hp: 0
+    atk: 0
+    def: 0
+    moveSpeed: 0
+    attackSpeed: 0
+    jumpPower: 0
+    jumpCooldown: 0
+    commonStatus: {fileID: 11400000, guid: 8afd45b5fbb0d894a95460bb3df57c6a, type: 2}
 --- !u!225 &2088510756253787299
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -116,13 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  itemPlusHP: 0
-  itemPlusMP: 0
-  itemPlusDamage: 0
-  itemPlusSpeed: 0
-  itemMinusHP: 0
-  itemMinusMP: 0
-  itemMinusDamage: 0
-  itemMinusSpeed: 0
-  itemPotionRecovery: 50
+  characterStatusHandler: {fileID: 0}
   itemImage: {fileID: 0}

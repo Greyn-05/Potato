@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2491062801244340414}
   - component: {fileID: 7537822368361331199}
   - component: {fileID: 5988398645708695236}
+  - component: {fileID: -531492325291219874}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 8352574985967397675}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6554344722343336021
 Animator:
@@ -147,6 +148,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: b48fe4c06494c1649840e058a8867e7b, type: 2}
   attackRange: 1
+--- !u!114 &-531492325291219874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352574985760912148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c4507bf205a1748b803d128b569c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHealth: {fileID: 11400000, guid: b48fe4c06494c1649840e058a8867e7b, type: 2}
 --- !u!1 &8352574985967397672
 GameObject:
   m_ObjectHideFlags: 0

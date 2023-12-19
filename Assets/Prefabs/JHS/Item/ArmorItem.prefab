@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9045007549900924831
 SpriteRenderer:
@@ -99,15 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  itemPlusHP: 50
-  itemPlusMP: 0
-  itemPlusDamage: 0
-  itemPlusSpeed: 0
-  itemMinusHP: 0
-  itemMinusMP: 0
-  itemMinusDamage: 0
-  itemMinusSpeed: 0
-  itemPotionRecovery: 0
+  characterStatusHandler: {fileID: 0}
   itemImage: {fileID: 4160045073561128173, guid: cb48091927bc33241b4f713e3393685e, type: 3}
 --- !u!61 &776805280367537765
 BoxCollider2D:

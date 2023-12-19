@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +11,10 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public GameObject descriptionPanel;
     public GameObject equipUI;
+
+    [SerializeField]
+    private List<CharacterStatus> statsModifier;
+    public CharacterStatusHandler statusHandler;
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>().transform;
@@ -32,14 +37,20 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                     equipUI.SetActive(true);
                     Inventory.instance.equipWeaponCount++;
                     //무기 장착 할때
-
+                    foreach(CharacterStatus stat in statsModifier)
+                    {
+                        statusHandler.AddStatModifier(stat);
+                    }
                 }
                 else if (equipUI.activeSelf && Inventory.instance.equipWeaponCount == 1)
                 {
                     equipUI.SetActive(false);
                     Inventory.instance.equipWeaponCount--;
                     //무기 장착해제 할때
-
+                    foreach (CharacterStatus stat in statsModifier)
+                    {
+                        statusHandler.RemoveStatModifier(stat);
+                    }
                 }
             }
             else if(gameObject.GetComponent<Item>().type == ItemType.Armor)
@@ -49,14 +60,20 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                     equipUI.SetActive(true);
                     Inventory.instance.equipArmorCount++;
                     //방어구 장착 할때
-
+                    foreach (CharacterStatus stat in statsModifier)
+                    {
+                        statusHandler.AddStatModifier(stat);
+                    }
                 }
                 else if (equipUI.activeSelf && Inventory.instance.equipArmorCount ==1)
                 {
                     equipUI.SetActive(false);
                     Inventory.instance.equipArmorCount--;
                     //방어구 장착해제 할때
-
+                    foreach (CharacterStatus stat in statsModifier)
+                    {
+                        statusHandler.RemoveStatModifier(stat);
+                    }
                 }
             }
         }

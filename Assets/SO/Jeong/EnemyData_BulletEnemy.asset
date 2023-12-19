@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d20cfaab19b8c4ab9c676beabb21b1, type: 3}
   m_Name: EnemyData_BulletEnemy
   m_EditorClassIdentifier: 
-  hp: 200
-  maxHp: 20
-  damage: 1
-  defence: 2
-  attackSpeed: 3
-  detectionRange: 10
+  maxHealth: 50
+  hp: 50
+  atk: 2
+  def: 0
   moveSpeed: 5
-  jumpForce: 5
+  attackSpeed: 5
+  jumpPower: 1
   jumpCooldown: 2
+  detectionRange: 10

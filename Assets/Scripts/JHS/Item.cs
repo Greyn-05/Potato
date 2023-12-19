@@ -10,21 +10,17 @@ public class Item : MonoBehaviour
 {
     [Header("ItemInformation")]
     public ItemType type;
-    public int itemPlusHP;
-    public int itemPlusMP;
-    public int itemPlusDamage;
-    public int itemPlusSpeed;
+    public int itemPotionRecoveryAmount;
 
-    public int itemMinusHP;
-    public int itemMinusMP;
-    public int itemMinusDamage;
-    public int itemMinusSpeed;
-
-    public int itemPotionRecovery;
-
-
-
-    public Image itemImage;
+    [SerializeField]
+    private List<CharacterStatus> statsModifier;
+    CharacterStatusHandler characterStatusHandler;
+    HealthSystem playerHealth;
+    public GameObject itemImage;
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
 
@@ -37,6 +33,8 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "testplayer")
         {
+            characterStatusHandler = collision.GetComponent<CharacterStatusHandler>();
+            playerHealth = collision.GetComponent<HealthSystem>();
             ClassifyItem(type);
             Destroy(gameObject);
         }
@@ -46,13 +44,14 @@ public class Item : MonoBehaviour
         switch (itemtype)
         {
             case ItemType.HpPotion: // 플레이어의 회복할때
+                playerHealth.ChangeHealth(itemPotionRecoveryAmount);
                 break;
             case ItemType.Armor:
                 for (int i = 0; i < Inventory.instance.itemSlotList.Count; i++)
                 {
                     if (Inventory.instance.itemSlotList[i].transform.childCount == 0)
                     {
-                        Instantiate(itemImage, Inventory.instance.itemSlotList[i].transform);
+                        Instantiate(itemImage, Inventory.instance.itemSlotList[i].transform).GetComponent<DraggableUI>().statusHandler= characterStatusHandler;
                         break;
                     }
                 }
@@ -62,7 +61,7 @@ public class Item : MonoBehaviour
                 {
                     if (Inventory.instance.itemSlotList[i].transform.childCount == 0)
                     {
-                        Instantiate(itemImage, Inventory.instance.itemSlotList[i].transform);
+                        Instantiate(itemImage, Inventory.instance.itemSlotList[i].transform).GetComponent<DraggableUI>().statusHandler = characterStatusHandler;
                         break;
                     }
                 }
