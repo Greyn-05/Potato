@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
     private CharacterStatusHandler _statusHandler;
     private float _healthLastChange = float.MaxValue;
 
-    public float CurrentHealth { get; private set; }
+    public float CurrentHealth { get;  set; }
     public float MaxHealth => _statusHandler.CurrentStatus.maxHealth;
 
     public event Action OnDamage;

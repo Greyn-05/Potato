@@ -43,8 +43,8 @@ public class Item : MonoBehaviour
     {
         switch (itemtype)
         {
+            
             case ItemType.HpPotion: // 플레이어의 회복할때
-                playerHealth.ChangeHealth(itemPotionRecoveryAmount);
                 break;
             case ItemType.Armor:
                 for (int i = 0; i < Inventory.instance.itemSlotList.Count; i++)
