@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 427523420789004297}
   - component: {fileID: 9198716130994172071}
   - component: {fileID: 6222697731868859848}
+  - component: {fileID: 1970957064665075574}
   m_Layer: 0
   m_Name: Enemy_Boss
   m_TagString: Enemy
@@ -451,15 +452,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8422276864327897534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.7, y: -2.99, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 12.12, y: -2.28, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8422276863966101265}
   - {fileID: 8422276862820669849}
   - {fileID: 8422276864114123489}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1950720097101948379
 Animator:
@@ -497,7 +498,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -571,3 +572,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: e3917401a9762534cb3f59a349db906a, type: 2}
   attackRange: 3
+--- !u!114 &1970957064665075574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422276864327897534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c4507bf205a1748b803d128b569c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHealth: {fileID: 11400000, guid: e3917401a9762534cb3f59a349db906a, type: 2}
