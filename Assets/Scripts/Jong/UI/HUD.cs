@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { HP,Gold }
+    public enum InfoType { HP, Gold, Atk, Def, AS }
     public InfoType type;
 
     Text mytext;
     Slider myslider;
-    CommonStatus commonStatusInstance; // CommonStatus 인스턴스를 클래스 레벨 변수로 선언
+    CommonStatus commonStatusInstance;
 
     private void Awake()
     {
         mytext = GetComponent<Text>();
         myslider = GetComponent<Slider>();
-        commonStatusInstance = ScriptableObject.CreateInstance<CommonStatus>(); // CommonStatus 인스턴스 생성 및 할당
+        commonStatusInstance = ScriptableObject.CreateInstance<CommonStatus>();
     }
 
     private void LateUpdate()
@@ -29,8 +29,20 @@ public class HUD : MonoBehaviour
                 myslider.value = curhp / maxhp;
                 break;
             case InfoType.Gold:
-                float curgold = 100;
+                float curgold = 100; //이후 유저 소유 골드로 변경해야함
                 mytext.text = curgold.ToString();
+                break;
+            case InfoType.Atk:
+                float atk = commonStatusInstance.atk;
+                mytext.text = atk.ToString();
+                break;
+            case InfoType.Def:
+                float def = commonStatusInstance.def;
+                mytext.text += def.ToString();
+                break;
+            case InfoType.AS:
+                float atks = commonStatusInstance.attackSpeed;
+                mytext.text = atks.ToString();
                 break;
         }
     }
