@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 200
   maxHp: 20
-  damage: 10
+  damage: 1.5
   defence: 2
-  attackSpeed: 1
+  attackSpeed: 3
   detectionRange: 10
-  moveSpeed: 10
+  moveSpeed: 3
   jumpForce: 5
   jumpCooldown: 2
