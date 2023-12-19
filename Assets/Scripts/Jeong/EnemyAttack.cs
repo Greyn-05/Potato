@@ -37,9 +37,11 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 플레이어에게 데미지 적용 로직
-            // 이 부분에서 플레이어의 체력을 감소시키는 로직을 구현합니다.
-            Debug.Log("플레이어에게 " + enemyData.atk + "만큼 데미지를 줍니다.");
+            HealthSystem playerHealthSystem = collision.gameObject.GetComponent<HealthSystem>();
+            if (playerHealthSystem != null)
+            {
+                playerHealthSystem.ChangeHealth(-enemyData.atk);
+            }
         }
     }
 }
