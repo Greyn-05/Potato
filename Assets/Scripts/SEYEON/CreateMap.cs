@@ -42,7 +42,7 @@ public class CreateMap : MonoBehaviour
 
     void GenerateMap()
     {
-        int maxPrefabCount = 10;
+        int maxPrefabCount = 15;
         int createdPrefabCount = 0;
 
         while (createdPrefabCount < maxPrefabCount) // ÃÖ´ë ÇÁ¸®ÆÕ °¹¼ö±îÁö
