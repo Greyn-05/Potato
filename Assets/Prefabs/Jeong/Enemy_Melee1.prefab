@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7401444577524885997}
   - component: {fileID: 7234748111428805555}
   - component: {fileID: 2313283470617906784}
-  - component: {fileID: 915145873983416242}
+  - component: {fileID: 1689088522400993621}
   m_Layer: 0
   m_Name: Enemy_Melee1
   m_TagString: Enemy
@@ -133,7 +133,7 @@ CircleCollider2D:
   m_Offset: {x: 0.02, y: -0.05}
   serializedVersion: 2
   m_Radius: 0.25
---- !u!114 &915145873983416242
+--- !u!114 &1689088522400993621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3171483926963243647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cf7bab08f9f634d99b6d4e29585f61, type: 3}
+  m_Script: {fileID: 11500000, guid: dc40800083f86da4cbac35068b05b108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 0d71395c89b572a40b2ba75bd5b202d0, type: 2}

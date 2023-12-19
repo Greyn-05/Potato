@@ -22,6 +22,7 @@ public class CharacterStatus
     [HideInInspector] public float moveSpeed;
     [HideInInspector] public float attackSpeed;
     [HideInInspector] public float jumpPower;
+    [HideInInspector] public float jumpCooldown;
     [HideInInspector] public float exp;
     public LayerMask target;
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 
@@ -15,6 +16,7 @@ public class CommonStatus : ScriptableObject
     public float moveSpeed;
     public float attackSpeed;
     public float jumpPower;
+    public float jumpCooldown;
     public float exp;
     public LayerMask target;
 
