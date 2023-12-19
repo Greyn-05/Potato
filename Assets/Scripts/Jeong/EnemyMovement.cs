@@ -55,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rigidBody2D.AddForce(Vector2.up * enemyStats.jumpForce, ForceMode2D.Impulse);
+        _rigidBody2D.AddForce(Vector2.up * enemyStats.jumpPower, ForceMode2D.Impulse);
         lastJumpTime = Time.time;
     }
 
