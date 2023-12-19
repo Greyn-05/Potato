@@ -99,15 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  itemPlusHP: 0
-  itemPlusMP: 0
-  itemPlusDamage: 10
-  itemPlusSpeed: 0
-  itemMinusHP: 0
-  itemMinusMP: 0
-  itemMinusDamage: 0
-  itemMinusSpeed: 0
-  itemPotionRecovery: 0
+  characterStatusHandler: {fileID: 0}
   itemImage: {fileID: 2146390690266190155, guid: 7f4336520f0bf594e8dc96cb93ac9589, type: 3}
 --- !u!61 &4529247184451966977
 BoxCollider2D:
