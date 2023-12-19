@@ -28,7 +28,7 @@ public class PlayerAnimation : MonoBehaviour
 
         if (_healthSystem != null)
         {
-            _healthSystem.Damage += Hit;
+            _healthSystem.OnDamage += Hit;
         }
     }
 
