@@ -23,9 +23,9 @@ public class PlayerInputController : CharacterController
         CallLookEvent(lookInput);
     }
 
-    public void OnAttack()
+    public void OnAttack(InputValue value)
     {
-        CallAttackEvent();
+        IsAttacking = value.isPressed;
     }
     #endregion
 }

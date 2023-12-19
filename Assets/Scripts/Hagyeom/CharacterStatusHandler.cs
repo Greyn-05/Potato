@@ -25,15 +25,14 @@ public class CharacterStatusHandler : MonoBehaviour
     {
         // baseStatus 입력
         CommonStatus commonStatus = null;
-        //InitBaseStatus();   // baseStatus에 commonStatus값 넣어두기
-        if (baseStatus.commonStatus != null)    // currentStatus에 쥐어줄 commonStatus받기
+        if (baseStatus.commonStatus != null)
         {
             commonStatus = Instantiate(baseStatus.commonStatus);
         }
 
         // currentStatus 기초 입력 
         CurrentStatus = new CharacterStatus { commonStatus = commonStatus };
-        UpdateStats((a, b) => b, baseStatus);
+        UpdateStatus((a, b) => b, baseStatus);
         if(CurrentStatus.commonStatus != null)
         {
             CurrentStatus = baseStatus;
@@ -44,39 +43,28 @@ public class CharacterStatusHandler : MonoBehaviour
         {
             if (modifier.statusChangeType == StatusChangeType.OVERRIDE) // 덮어쓰기
             {
-                UpdateStats((a, b) => b, modifier);
+                UpdateStatus((a, b) => b, modifier);
             }
             else if (modifier.statusChangeType == StatusChangeType.ADD) // 추가
             {
-                UpdateStats((a, b) => a + b, modifier);
+                UpdateStatus((a, b) => a + b, modifier);
             }
             else if (modifier.statusChangeType == StatusChangeType.MULTIPLE) // 곱연산
             {
-                UpdateStats((a, b) => a * b, modifier);
+                UpdateStatus((a, b) => a * b, modifier);
             }
         }
 
+        SetCurrentStatus();
         LimitAllStatus();
 
     }
 
-    // baseStauts기초 값 받기
-    //private void InitBaseStatus()
-    //{
-    //    baseStatus.maxHealth = baseStatus.commonStatus.maxHealth;
-    //    baseStatus.hp = baseStatus.commonStatus.hp;
-    //    baseStatus.atk = baseStatus.commonStatus.atk;
-    //    baseStatus.def = baseStatus.commonStatus.def;
-    //    baseStatus.moveSpeed = baseStatus.commonStatus.moveSpeed;
-    //    baseStatus.attackSpeed  = baseStatus.commonStatus.attackSpeed;
-    //    baseStatus.exp = baseStatus.commonStatus.exp;
-    //    baseStatus.jumpPower = baseStatus.commonStatus.jumpPower;
-    //    baseStatus.jumpCooldown = baseStatus.commonStatus.jumpCooldown;
-    //    baseStatus.target = baseStatus.commonStatus.target;
-    //}
+    
+
 
     // status값 변화 받기
-    private void UpdateStats(Func<float, float, float> operation, CharacterStatus newModifier)
+    private void UpdateStatus(Func<float, float, float> operation, CharacterStatus newModifier)
     {
         UpdateBaseStatus(operation, CurrentStatus.commonStatus, newModifier.commonStatus);
 
@@ -132,6 +120,22 @@ public class CharacterStatusHandler : MonoBehaviour
     }
 
 
+    private void SetCurrentStatus()
+    {
+        if (CurrentStatus == null || CurrentStatus.commonStatus == null)
+        {
+            return;
+        }
+
+        LimitStatus(ref CurrentStatus.maxHealth, CurrentStatus.commonStatus.maxHealth);
+        LimitStatus(ref CurrentStatus.atk, CurrentStatus.commonStatus.atk);
+        LimitStatus(ref CurrentStatus.def, CurrentStatus.commonStatus.def);
+        LimitStatus(ref CurrentStatus.moveSpeed, CurrentStatus.commonStatus.moveSpeed);
+        LimitStatus(ref CurrentStatus.attackSpeed, CurrentStatus.commonStatus.attackSpeed);
+        LimitStatus(ref CurrentStatus.jumpPower, CurrentStatus.commonStatus.jumpPower);
+        LimitStatus(ref CurrentStatus.jumpCooldown, CurrentStatus.commonStatus.jumpCooldown);
+    }
+
     private void LimitAllStatus()
     {
         if (CurrentStatus == null || CurrentStatus.commonStatus == null)
@@ -139,11 +143,11 @@ public class CharacterStatusHandler : MonoBehaviour
             return;
         }
 
-        LimitStatus(ref CurrentStatus.maxHealth, baseStatus.maxHealth);
-        LimitStatus(ref CurrentStatus.atk, baseStatus.atk);
-        LimitStatus(ref CurrentStatus.def, baseStatus.def);
-        LimitStatus(ref CurrentStatus.moveSpeed, baseStatus.moveSpeed);
-        LimitStatus(ref CurrentStatus.attackSpeed, baseStatus.attackSpeed);
+        LimitStatus(ref CurrentStatus.maxHealth, baseStatus.commonStatus.maxHealth);
+        LimitStatus(ref CurrentStatus.atk, baseStatus.commonStatus.atk);
+        LimitStatus(ref CurrentStatus.def, baseStatus.commonStatus.def);
+        LimitStatus(ref CurrentStatus.moveSpeed, baseStatus.commonStatus.moveSpeed);
+        LimitStatus(ref CurrentStatus.attackSpeed, baseStatus.commonStatus.attackSpeed);
     }
     #endregion
     #endregion

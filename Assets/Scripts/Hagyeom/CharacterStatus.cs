@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public enum StatusChangeType
@@ -23,8 +24,7 @@ public class CharacterStatus
     [HideInInspector] public float attackSpeed;
     [HideInInspector] public float jumpPower;
     [HideInInspector] public float jumpCooldown;
-    [HideInInspector] public float exp;
-    public LayerMask target;
+    public TagData tag;
 
     public CommonStatus commonStatus;
     #endregion
