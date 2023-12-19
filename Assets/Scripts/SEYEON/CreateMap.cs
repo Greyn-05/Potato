@@ -44,6 +44,7 @@ public class CreateMap : MonoBehaviour
     {
         int maxPrefabCount = 15;
         int createdPrefabCount = 0;
+        int attemptCount = 0; // 탐색 시도 횟수
 
         while (createdPrefabCount < maxPrefabCount) // 최대 프리팹 갯수까지
         {
@@ -73,6 +74,13 @@ public class CreateMap : MonoBehaviour
                         break;
                     }
                 }
+
+                attemptCount++;
+                if (attemptCount > 100)
+                {
+                    Debug.LogError("ERROR");
+                    break;
+                }
             }
             while (!positionIsValid);
 
@@ -81,6 +89,11 @@ public class CreateMap : MonoBehaviour
                 Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // 프리팹 생성
                 createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight }); // 생성된 프리팹 위치, 길이 저장
                 createdPrefabCount++; // 프리팹 수 ++
+                attemptCount = 0; // 횟수 초기화
+            }
+            else
+            {
+                break;
             }
         }
     }
