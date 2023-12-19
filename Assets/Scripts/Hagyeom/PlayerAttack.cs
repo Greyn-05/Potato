@@ -20,14 +20,8 @@ public class PlayerAttack : MonoBehaviour
         _status = GetComponent<CharacterStatusHandler>();
     }
 
-    private void Start()
-    {
-        
-    }
-
-
     
-    private void Attck()
+    private void Attack()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(_pos.position, _boxSize, 0);
         

@@ -20,6 +20,21 @@ public class CharacterStatusHandler : MonoBehaviour
     }
     #endregion
 
+    #region Modifier
+    public void AddStatModifier(CharacterStatus statusModifier)
+    {
+        statsModifiers.Add(statusModifier);
+        UpdatePlayerStatus();
+    }
+
+    public void RemoveStatModifier(CharacterStatus statusModifier)
+    {
+        statsModifiers.Remove(statusModifier);
+        UpdatePlayerStatus();
+    }
+    #endregion
+
+
     #region UpdateStatus
     private void UpdatePlayerStatus()
     {
