@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
 
-    public Image status;
+    private GameObject status;
+    private GameObject gameOverUI;
     private bool statVisible = false;
 
     private void Update()
@@ -14,6 +16,20 @@ public class UIController : MonoBehaviour
             ToggleUI();
         }
     }
+    public void Gameover()
+    {
+        gameOverUI.SetActive(true);
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void ExitMenu()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+   
+
     private void ToggleUI()
     {
         statVisible = !statVisible;

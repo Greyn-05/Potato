@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour
     Text mytext;
     Slider myslider;
     CommonStatus commonStatusInstance;
+    HealthSystem healthSystemInstance;
 
     private void Awake()
     {
@@ -24,8 +25,8 @@ public class HUD : MonoBehaviour
         switch (type)
         {
             case InfoType.HP:
-                float maxhp = commonStatusInstance.maxHealth;
-                float curhp = commonStatusInstance.hp;
+                float maxhp = healthSystemInstance.MaxHealth;
+                float curhp = healthSystemInstance.CurrentHealth;
                 myslider.value = curhp / maxhp;
                 break;
             case InfoType.Gold:
