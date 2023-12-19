@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private List<CharacterStatus> statsModifier;
+    GameObject player;
     CharacterStatusHandler characterStatusHandler;
     HealthSystem playerHealth;
     public GameObject itemImage;
@@ -35,6 +36,7 @@ public class Item : MonoBehaviour
         {
             characterStatusHandler = collision.GetComponent<CharacterStatusHandler>();
             playerHealth = collision.GetComponent<HealthSystem>();
+            player = collision.GetComponent<GameObject>();
             ClassifyItem(type);
             Destroy(gameObject);
         }
@@ -43,7 +45,6 @@ public class Item : MonoBehaviour
     {
         switch (itemtype)
         {
-            
             case ItemType.HpPotion: // 플레이어의 회복할때
                 break;
             case ItemType.Armor:
