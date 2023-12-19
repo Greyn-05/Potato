@@ -25,7 +25,6 @@ public class PlayerItem : MonoBehaviour
     {
         WaitForIt(time);
         OnPotionEnd?.Invoke(status);
-        Debug.Log("asd");
     }
 
     IEnumerator WaitForIt(float time)

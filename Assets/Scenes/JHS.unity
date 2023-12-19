@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 404974449}
   - component: {fileID: 404974448}
   - component: {fileID: 404974452}
+  - component: {fileID: 404974453}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: testplayer
@@ -296,6 +297,31 @@ MonoBehaviour:
     jumpCooldown: 0
     commonStatus: {fileID: 11400000, guid: b7860e695ae14154084b414ae6805ae9, type: 2}
   statsModifiers: []
+--- !u!114 &404974453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404974447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced349a60badf6f45baee02f9918c420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status:
+    statusChangeType: 0
+    maxHealth: 0
+    hp: 0
+    atk: 0
+    def: 0
+    moveSpeed: 0
+    attackSpeed: 0
+    jumpPower: 0
+    jumpCooldown: 0
+    commonStatus: {fileID: 0}
+  potionTime: 0
+  time: 0
 --- !u!1 &478865650
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private List<CharacterStatus> statsModifier;
-    GameObject player;
+    PlayerItem playeritem;
     CharacterStatusHandler characterStatusHandler;
     HealthSystem playerHealth;
     public GameObject itemImage;
@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
         {
             characterStatusHandler = collision.GetComponent<CharacterStatusHandler>();
             playerHealth = collision.GetComponent<HealthSystem>();
-            player = collision.GetComponent<GameObject>();
+            playeritem = collision.GetComponent<PlayerItem>();
             ClassifyItem(type);
             Destroy(gameObject);
         }
@@ -46,6 +46,9 @@ public class Item : MonoBehaviour
         switch (itemtype)
         {
             case ItemType.HpPotion: // 플레이어의 회복할때
+                playeritem.status = statsModifier[0];
+                playeritem.time = 10f;
+                playeritem.potionTime = true;
                 break;
             case ItemType.Armor:
                 for (int i = 0; i < Inventory.instance.itemSlotList.Count; i++)
