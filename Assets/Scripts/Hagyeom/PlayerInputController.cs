@@ -22,5 +22,10 @@ public class PlayerInputController : CharacterController
         Vector2 lookInput = value.Get<Vector2>().normalized;
         CallLookEvent(lookInput);
     }
+
+    public void OnAttack()
+    {
+        CallAttackEvent();
+    }
     #endregion
 }

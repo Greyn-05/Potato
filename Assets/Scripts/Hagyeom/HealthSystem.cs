@@ -15,7 +15,8 @@ public class HealthSystem : MonoBehaviour
     public float CurrentHealth { get; private set; }
     public float MaxHealth => _statusHandler.CurrentStatus.maxHealth;
 
-    public event Action OnHealthChange;
+    public event Action OnDamage;
+    public event Action OnHeal;
     public event Action OnDeath;
     #endregion
 
@@ -43,7 +44,8 @@ public class HealthSystem : MonoBehaviour
 
         _statusHandler.CurrentStatus.hp = CurrentHealth;
 
-        if(change != 0) OnHealthChange?.Invoke();
+        if(change < 0) OnDamage?.Invoke();
+        else OnHeal?.Invoke();
 
         if(CurrentHealth <= 0f)
         {

@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
+    
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
     public event Action<Vector2> OnLookEvent;
+    public event Action OnAttackEvent;
 
 
     public void CallMoveEvent(Vector2 direction)
@@ -24,6 +26,11 @@ public class CharacterController : MonoBehaviour
     public void CallLookEvent(Vector2 lookDirection)
     {
         OnLookEvent?.Invoke(lookDirection);
+    }
+
+    public void CallAttackEvent()
+    {
+        OnAttackEvent?.Invoke();
     }
 
 }
