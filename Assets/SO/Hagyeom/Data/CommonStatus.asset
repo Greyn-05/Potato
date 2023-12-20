@@ -17,6 +17,11 @@ MonoBehaviour:
   atk: 20
   def: 5
   moveSpeed: 5
+<<<<<<< Updated upstream:Assets/SO/Hagyeom/Data/CommonStatus.asset
   attackSpeed: 2
   jumpPower: 10
+=======
+  attackSpeed: 1
+  jumpPower: 20
+>>>>>>> Stashed changes:Assets/SO/Hagyeom/Data/Knight_CommonStatus.asset
   jumpCooldown: 1

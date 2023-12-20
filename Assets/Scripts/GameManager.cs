@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public GameObject knightPrefab; // 임시조치
     public GameObject PlayerCameraPrefab;
+<<<<<<< Updated upstream
+=======
+    public GameObject UIprefab;
+
+    public EnemyDeath _enemyDeath;
+    public int potalCount;
+>>>>>>> Stashed changes
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
 
@@ -43,4 +50,55 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
+<<<<<<< Updated upstream
+=======
+    void InstantiateUI()
+    {
+        Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
+    }
+
+    public void EnterPortal(int portalIndex)
+    {
+        OnPortalEnter(portalIndex);
+    }
+
+    private void OnPortalEnter(int portalIndex)
+    {
+        if (portalIndex == stageCorrectPortal[currentStage - 1])
+        {
+            GoToNextStage();
+        }
+        else
+        {
+            RestartCurrentStage();
+        }
+    }
+
+    private void GoToNextStage()
+    {
+        currentStage++;
+        createMapScript.PlaceMap();
+        createMapScript.PlacePortals();
+    }
+
+    private void RestartCurrentStage()
+    {
+        createMapScript.PlaceMap();
+        createMapScript.PlacePortals();
+    }
+
+    public bool EnemyAllDeath()
+    {
+        Debug.Log(potalCount + "gameManager");
+        if (potalCount >= 5)
+        {
+            
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+>>>>>>> Stashed changes
 }
