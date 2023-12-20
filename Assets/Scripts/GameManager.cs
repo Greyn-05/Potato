@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject knightPrefab;
-    //public GameObject PlayerCameraPrefab;
+    public GameObject knightPrefab; // 임시조치
+    public GameObject PlayerCameraPrefab;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
 
@@ -40,6 +41,6 @@ public class GameManager : MonoBehaviour
 
     void InstantPlayerCameraPrefa()
     {
-        //Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

@@ -25,10 +25,5 @@ public class PlayerCamera : MonoBehaviour
         Vector3 targetPosition = new Vector3(playerTransform.position.x, playerTransform.position.y + cameraHeight, -10);
         // 카메라를 부드럽게 이동
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * damping);
-
-        //if(GameObject.FindWithTag("Player") == null)
-        //{
-        //    playerTransform = GameObject.FindWithTag("Player").transform;
-        //}
     }
 }
