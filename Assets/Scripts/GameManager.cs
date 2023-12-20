@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject CameraWall;
 
 
-    public EnemyDeath _enemyDeath;
+    //public EnemyDeath _enemyDeath;
     public int potalCount;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject); // 씬이 변경되어도 객체가 파괴되지 않도록 한다.
         }
         else
         {
@@ -39,24 +38,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
-        InstantiateKnight();
         InstantiateUI();
         InstantiateCameraWall();
     }
 
     
 
-    void InstantiateKnight()
-    {
-
-        Instantiate(knightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-
-    }
-
-    //void InstantPlayerCameraPrefa()
-    //{
-    //    Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-    //}
+   
     void InstantiateUI()
     {
         Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
@@ -65,6 +53,7 @@ public class GameManager : MonoBehaviour
     private void InstantiateCameraWall()
     {
         GameObject newCameraWall =  Instantiate(CameraWall, new Vector3(0, 0, 0), Quaternion.identity);
+        newCameraWall.transform.position = new Vector3(1, 3, 0);
         GameObject newPlayerCamera = Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0),Quaternion.identity);
         newPlayerCamera.transform.parent = newCameraWall.transform;
 

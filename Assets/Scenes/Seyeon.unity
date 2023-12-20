@@ -247,7 +247,7 @@ MonoBehaviour:
     height: 1
   maxJumpWidth: 3
   maxJumpHeight: 3
-  startPosition: {x: -17, y: -8}
+  startPosition: {x: -17, y: -7}
   mapLength: 37
   mapHeight: 20
   minDistanceBetweenPrefabs: 2
