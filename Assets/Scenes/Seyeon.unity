@@ -252,7 +252,7 @@ MonoBehaviour:
   mapHeight: 20
   minDistanceBetweenPrefabs: 2
   minHeightDifference: 2
-  trapPrefabs: {fileID: 5716857117505568246, guid: 47eff154107b35744b990bd32af23a80, type: 3}
+  trapPrefabs: {fileID: 8636399952766455132, guid: 47eff154107b35744b990bd32af23a80, type: 3}
   numberOfTraps: 6
   goldBox: {fileID: 7759798595953337959, guid: 53df2ca587dda4649a32c950f952c746, type: 3}
   portalPrefabs:
