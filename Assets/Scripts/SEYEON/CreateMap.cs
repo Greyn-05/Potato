@@ -8,31 +8,35 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class MapPrefab
 {
-    public GameObject prefab; // ¸Ê ÇÁ¸®ÆÕ
-    public float width; // ÇÁ¸®ÆÕ °¡·Î
-    public float height; // ÇÁ¸®ÆÕ ¼¼·Î
+    public GameObject prefab; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float width; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float height; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 
 [Serializable]
 public struct PrefabData
 {
-    public Vector2 position; // ÇÁ¸®ÆÕ À§Ä¡
-    public float width; // °¡·Î
-    public float height; // ¼¼·Î
+    public Vector2 position; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+    public float width; // ï¿½ï¿½ï¿½ï¿½
+    public float height; // ï¿½ï¿½ï¿½ï¿½
+    public bool isGround; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 public class CreateMap : MonoBehaviour
 {
-    public MapPrefab[] mapPrefabs; // ÇÁ¸®ÆÕ ¹è¿­
-    public float maxJumpWidth; // ÃÖ´ë Á¡ÇÁ °¡·Î
-    public float maxJumpHeight; // ÃÖ´ë Á¡ÇÁ ¼¼·Î
-    public Vector2 startPosition; // ½ÃÀÛ À§Ä¡
-    public float mapLength; // ¸Ê °¡·Î
-    public float mapHeight; // ¸Ê ¼¼·Î
-    public float minDistanceBetweenPrefabs; // ÇÁ¸®ÆÕ³¢¸® ÃÖ¼Ò °Å¸®
-    public float minHeightDifference; // ÇÁ¸®ÆÕ³¢¸® ÃÖ¼Ò ³ôÀÌ Â÷ÀÌ
+    public MapPrefab[] mapPrefabs; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+    public float maxJumpWidth; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float maxJumpHeight; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public Vector2 startPosition; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+    public float mapLength; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float mapHeight; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float minDistanceBetweenPrefabs; // ï¿½ï¿½ï¿½ï¿½ï¿½Õ³ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½Å¸ï¿½
+    public float minHeightDifference; // ï¿½ï¿½ï¿½ï¿½ï¿½Õ³ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // ÇÁ¸®ÆÕ µ¥ÀÌÅÍ ÀúÀå
+    public GameObject trapPrefabs; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public int numberOfTraps; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+    private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
     private void Start()
@@ -40,37 +44,37 @@ public class CreateMap : MonoBehaviour
         GenerateMap();
     }
 
-    void GenerateMap()
+    private void GenerateMap()
     {
-        int maxPrefabCount = 15;
+        int maxPrefabCount = 20;
         int createdPrefabCount = 0;
-        int attemptCount = 0; // Å½»ö ½Ãµµ È½¼ö
+        int attemptCount = 0; // Å½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
-        while (createdPrefabCount < maxPrefabCount) // ÃÖ´ë ÇÁ¸®ÆÕ °¹¼ö±îÁö
+        while (createdPrefabCount < maxPrefabCount) // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            MapPrefab mapPrefabData = mapPrefabs[Random.Range(0, mapPrefabs.Length)]; // ÇÁ¸®ÆÕ ¹è¿­¿¡¼­ ÇÁ¸®ÆÕ ·£´ý ¼±ÅÃ
-            float prefabWidth = mapPrefabData.width; // ÀÔ·ÂÇÑ ±æÀÌ °¡Á®¿È
-            float prefabHeight = mapPrefabData.height; // ÀÔ·ÂÇÑ ³ôÀÌ °¡Á®¿È
+            MapPrefab mapPrefabData = mapPrefabs[Random.Range(0, mapPrefabs.Length)]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            float prefabWidth = mapPrefabData.width; // ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            float prefabHeight = mapPrefabData.height; // ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-            Vector2 nextPosition; // ´ÙÀ½ ÇÁ¸®ÆÕ »ý¼º À§Ä¡
-            bool positionIsValid; // À§Ä¡ À¯È¿ÇÑÁö
+            Vector2 nextPosition; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+            bool positionIsValid; // ï¿½ï¿½Ä¡ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½
 
             do
             {
                 positionIsValid = true;
-                float nextXPosition = startPosition.x + Random.Range(0, mapLength - prefabWidth); // x´Â ¸Ê ±æÀÌ ¾È¿¡¼­ ·£´ý
-                float nextYPosition = startPosition.y + Random.Range(0, mapHeight - prefabHeight); // y´Â ¸Ê ³ôÀÌ ¾È¿¡¼­ ·£´ý
+                float nextXPosition = startPosition.x + Random.Range(0, mapLength - prefabWidth); // xï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                float nextYPosition = startPosition.y + Random.Range(0, mapHeight - prefabHeight); // yï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
                 nextPosition = new Vector2(nextXPosition, nextYPosition);
 
-                foreach (var prefabData in createdPrefabsData) // »ý¼ºµÈ ÇÁ¸®ÆÕµé À§Ä¡¶û °ãÄ¡´ÂÁö ¾Æ´ÑÁö 
+                foreach (var prefabData in createdPrefabsData) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ 
                 {
                     float horizontalDistance = Mathf.Abs(prefabData.position.x - nextPosition.x) - (prefabData.width / 2 + prefabWidth / 2);
                     float verticalDistance = Mathf.Abs(prefabData.position.y - nextPosition.y) - (prefabData.height / 2 + prefabHeight / 2);
 
                     if (horizontalDistance < minDistanceBetweenPrefabs && verticalDistance < minHeightDifference)
                     {
-                        positionIsValid = false; // °ãÄ¡¸é false
+                        positionIsValid = false; // ï¿½ï¿½Ä¡ï¿½ï¿½ false
                         break;
                     }
                 }
@@ -78,7 +82,6 @@ public class CreateMap : MonoBehaviour
                 attemptCount++;
                 if (attemptCount > 100)
                 {
-                    //Debug.LogError("ERROR");
                     break;
                 }
             }
@@ -86,15 +89,57 @@ public class CreateMap : MonoBehaviour
 
             if (positionIsValid)
             {
-                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // ÇÁ¸®ÆÕ »ý¼º
-                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight }); // »ý¼ºµÈ ÇÁ¸®ÆÕ À§Ä¡, ±æÀÌ ÀúÀå
-                createdPrefabCount++; // ÇÁ¸®ÆÕ ¼ö ++
-                attemptCount = 0; // È½¼ö ÃÊ±âÈ­
+                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight, isGround = true }); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½, ï¿½Â±ï¿½ ï¿½ï¿½ï¿½ï¿½
+                createdPrefabCount++; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ++
+                attemptCount = 0; // È½ï¿½ï¿½ ï¿½Ê±ï¿½È­
             }
             else
             {
                 break;
             }
+        }
+
+        PlaceTraps();
+    }
+
+    private void PlaceTraps()
+    {
+        List<PrefabData> groundPrefabs = new List<PrefabData>(); // ï¿½ï¿½ ï¿½Â±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
+
+        foreach (var prefabData in createdPrefabsData)
+        {
+            if (prefabData.isGround)
+            {
+                groundPrefabs.Add(prefabData);
+            }
+        }
+
+        for (int i = 0; i < numberOfTraps; i++)
+        {
+            if (groundPrefabs.Count == 0)
+            {
+                break; // ï¿½ï¿½ ï¿½Â±×°ï¿½ 0ï¿½Ì¸ï¿½ break
+            }
+
+            int randomIndex = Random.Range(0, groundPrefabs.Count);
+            PrefabData groundPrefab = groundPrefabs[randomIndex];
+
+            float trapX = groundPrefab.position.x;
+            float trapY = groundPrefab.position.y + (groundPrefab.height / 2); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+            GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
+
+            // BoxCollider2D trapCollider = trapInstance.GetComponent<BoxCollider2D>();
+
+            //if (trapCollider != null)
+            //{
+            //    float trapOffsetY = trapCollider.size.y * trapInstance.transform.localScale.y / 2;
+
+            trapInstance.transform.position = groundPrefab.position;
+            //}
+
+            groundPrefabs.RemoveAt(randomIndex); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 }
