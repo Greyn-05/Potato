@@ -7,6 +7,8 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour
 {
     public EnemyDataSO _enemyHealth; // 적의 체력
+    public EnemySpawn enemySpawn;
+    public UIController uIController;
     public GameObject HPPotionItemPrefab; // HPPotionItem 프리팹에 대한 공개 참조
     public bool choiceDropHPPotion; // HPPotion을 해당 Enemy에게 Drop 시킬건지 체크
 
@@ -52,6 +54,10 @@ public class EnemyDeath : MonoBehaviour
                 // 예: rb.gravityScale = 1;
 
             }
+        }
+        if (enemySpawn.CurrentScenario == 4)
+        {
+            uIController.GameClear();
         }
     }
 }
