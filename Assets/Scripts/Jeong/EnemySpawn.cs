@@ -5,10 +5,12 @@ public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemyPrefabs; // 적 프리팹 배열
     private List<GameObject> spawnedEnemies = new List<GameObject>(); // 생성된 적들을 추적
-
+    private int currentScenario;
+    public int CurrentScenario => currentScenario;
     // 적을 생성하는 메소드
     public void SpawnEnemies(int scenario)
     {
+        currentScenario = scenario;
         // 이전에 생성된 적들을 제거
         foreach (GameObject enemy in spawnedEnemies)
         {
