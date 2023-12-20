@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
     private CharacterStatusHandler _statusHandler;
     private float _healthLastChange = float.MaxValue;
 
-    public float CurrentHealth { get; private set; }
+    public float CurrentHealth { get;  set; }
     public float MaxHealth => _statusHandler.CurrentStatus.maxHealth;
 
     public event Action OnDamage;
@@ -53,8 +53,8 @@ public class HealthSystem : MonoBehaviour
         Debug.Log(CurrentHealth);
         Debug.Log(change);
 
-        if(change < 0) OnDamage?.Invoke();
-        else OnHeal?.Invoke();
+        if(change < 0 && CurrentHealth > 0) OnDamage?.Invoke();
+        else if(change > 0) OnHeal?.Invoke();
 
         if(CurrentHealth <= 0f)
         {

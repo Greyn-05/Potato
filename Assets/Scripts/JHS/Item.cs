@@ -5,7 +5,7 @@ using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ItemType { HpPotion, Weapon, Armor }
+public enum ItemType { HpPotion, Weapon, Armor, JumpPotion }
 public class Item : MonoBehaviour
 {
     [Header("ItemInformation")]
@@ -14,6 +14,9 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private List<CharacterStatus> statsModifier;
+    [SerializeField]
+    private CharacterStatus itemsStats;
+    PlayerItem playeritem;
     CharacterStatusHandler characterStatusHandler;
     HealthSystem playerHealth;
     public GameObject itemImage;
@@ -35,6 +38,7 @@ public class Item : MonoBehaviour
         {
             characterStatusHandler = collision.GetComponent<CharacterStatusHandler>();
             playerHealth = collision.GetComponent<HealthSystem>();
+            playeritem = collision.GetComponent<PlayerItem>();
             ClassifyItem(type);
             Destroy(gameObject);
         }
@@ -65,6 +69,11 @@ public class Item : MonoBehaviour
                         break;
                     }
                 }
+                break;
+            case ItemType.JumpPotion:
+                playeritem.status = itemsStats;
+                playeritem.time = 10f;
+                playeritem.potionTime = true;
                 break;
         }
     }
