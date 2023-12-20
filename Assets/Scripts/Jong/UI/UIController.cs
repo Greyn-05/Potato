@@ -46,15 +46,18 @@ public class UIController : MonoBehaviour
     public void Gameover()
     {
         gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ExitMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("StartScene");
     }
 
