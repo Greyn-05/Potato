@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
         InstantiateKnight();
-        InstantPlayerCameraPrefa();
         InstantiateUI();
         InstantiateCameraWall();
     }
