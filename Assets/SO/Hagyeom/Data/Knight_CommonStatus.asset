@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a656f38258e71a246bdfb452b53d790c, type: 3}
   m_Name: Knight_CommonStatus
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  hp: 500
-  atk: 40
+  maxHealth: 200
+  hp: 200
+  atk: 20
   def: 5
   moveSpeed: 5
-  attackSpeed: 1
-  jumpPower: 10
+  attackSpeed: 2
+  jumpPower: 15
   jumpCooldown: 1
