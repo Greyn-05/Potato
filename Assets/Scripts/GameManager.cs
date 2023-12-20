@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject knightPrefab; // 임시조치
     public GameObject PlayerCameraPrefab;
+    public GameObject UIPrefab;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
         InstantiateKnight();
         InstantPlayerCameraPrefa();
+        InstantiateUI();
     }
 
 
@@ -42,5 +44,10 @@ public class GameManager : MonoBehaviour
     void InstantPlayerCameraPrefa()
     {
         Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    void InstantiateUI()
+    {
+        Instantiate(UIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }
