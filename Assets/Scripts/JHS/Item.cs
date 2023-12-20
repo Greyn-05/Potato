@@ -32,9 +32,20 @@ public class Item : MonoBehaviour
     {
 
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "testplayer")
+        if (collision.gameObject.tag == "Player")
+        {
+            characterStatusHandler = collision.gameObject.GetComponent<CharacterStatusHandler>();
+            playerHealth = collision.gameObject.GetComponent<HealthSystem>();
+            playeritem = collision.gameObject.GetComponent<PlayerItem>();
+            ClassifyItem(type , collision);
+            Destroy(gameObject);
+        }
+    }
+  /*  public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
             characterStatusHandler = collision.GetComponent<CharacterStatusHandler>();
             playerHealth = collision.GetComponent<HealthSystem>();
@@ -42,8 +53,8 @@ public class Item : MonoBehaviour
             ClassifyItem(type);
             Destroy(gameObject);
         }
-    }
-    private void ClassifyItem(ItemType itemtype)
+    }*/
+    private void ClassifyItem(ItemType itemtype, Collision2D collision)
     {
         switch (itemtype)
         {
@@ -71,9 +82,13 @@ public class Item : MonoBehaviour
                 }
                 break;
             case ItemType.JumpPotion:
-                playeritem.status = itemsStats;
-                playeritem.time = 10f;
-                playeritem.potionTime = true;
+                characterStatusHandler.AddStatModifier(itemsStats);
+                //playeritem.status = itemsStats;
+                // playeritem.potionTime = true;
+                //playeritem.time = 3f;
+                collision.gameObject.GetComponent<PlayerItem>().status = itemsStats;
+                collision.gameObject.GetComponent<PlayerItem>().time = 3f;
+                collision.gameObject.GetComponent<PlayerItem>().potionTime = true;
                 break;
         }
     }

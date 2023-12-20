@@ -36,6 +36,8 @@ public class CreateMap : MonoBehaviour
     public GameObject trapPrefabs; // ���� ������
     public int numberOfTraps; // ���� ����
 
+    public GameObject goldBox; // ����
+
     private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // ������ ������ ����
 
 
@@ -46,11 +48,11 @@ public class CreateMap : MonoBehaviour
 
     private void GenerateMap()
     {
-        int maxPrefabCount = 20;
-        int createdPrefabCount = 0;
+        int maxPrefabCount = 20; // �ִ� �� ���� ����
+        int createdPrefabCount = 0; // ������ ������ ����
         int attemptCount = 0; // Ž�� �õ� Ƚ��
 
-        while (createdPrefabCount < maxPrefabCount) // �ִ� ������ ��������
+        while (createdPrefabCount < maxPrefabCount) // �ִ� ������ �������� �ݺ�
         {
             MapPrefab mapPrefabData = mapPrefabs[Random.Range(0, mapPrefabs.Length)]; // ������ �迭���� ������ ���� ����
             float prefabWidth = mapPrefabData.width; // �Է��� ���� ������
@@ -100,7 +102,8 @@ public class CreateMap : MonoBehaviour
             }
         }
 
-        PlaceTraps();
+        PlaceTraps(); // ���� ��ġ
+        PlaceGoldBox(); // �ڽ� ��ġ
     }
 
     private void PlaceTraps()
@@ -130,16 +133,50 @@ public class CreateMap : MonoBehaviour
 
             GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
 
-            // BoxCollider2D trapCollider = trapInstance.GetComponent<BoxCollider2D>();
-
-            //if (trapCollider != null)
-            //{
-            //    float trapOffsetY = trapCollider.size.y * trapInstance.transform.localScale.y / 2;
-
             trapInstance.transform.position = groundPrefab.position;
-            //}
 
             groundPrefabs.RemoveAt(randomIndex); // ����� �� �������� ����Ʈ���� ����
         }
+    }
+
+    private void PlaceGoldBox()
+    {
+        List<PrefabData> groundPrefabs = new List<PrefabData>();
+
+        foreach (var prefabData in createdPrefabsData)
+        {
+            if (prefabData.isGround && !IsTrapOn(prefabData.position))
+            {
+                groundPrefabs.Add(prefabData);
+            }
+        }
+
+        if (groundPrefabs.Count > 0)
+        {
+            int randomIndex = Random.Range(0, groundPrefabs.Count);
+            PrefabData selectedGround = groundPrefabs[randomIndex];
+           
+            float boxX = selectedGround.position.x;
+            float boxY = selectedGround.position.y - 0.5f;
+            
+            Instantiate (goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("�ڽ� �ڸ� ����");
+        }
+    }
+
+    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f) // �������� 0.1f �ȿ� ���� �ִ��� �˻�
+    {
+        foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
+        {
+            if (Vector2.Distance(trap.transform.position, position) <= tolerance)
+            {
+                return true; // ���� O
+            }
+        }
+
+        return false; // ���� X
     }
 }
