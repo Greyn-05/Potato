@@ -10,8 +10,9 @@ public class PlayerCamera : MonoBehaviour
     public float cameraHeight = 3.5f;   
     public float damping = 5f;
 
-    private void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.5f); //0.5초 지연 (임시조치-추천되지 않음)
         playerTransform = GameObject.FindWithTag("Player").transform;
     }
     private void Update()
@@ -25,6 +26,9 @@ public class PlayerCamera : MonoBehaviour
         // 카메라를 부드럽게 이동
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * damping);
 
-        
+        //if(GameObject.FindWithTag("Player") == null)
+        //{
+        //    playerTransform = GameObject.FindWithTag("Player").transform;
+        //}
     }
 }
