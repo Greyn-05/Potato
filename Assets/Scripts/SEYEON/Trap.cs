@@ -13,9 +13,5 @@ public class Trap : MonoBehaviour
             HealthSystem healthSystem = other.GetComponent<HealthSystem>();
             healthSystem.ChangeHealth(-TrapDamage);
         }
-        else if (other.CompareTag("Enemy"))
-        {
-            //적에게도 데미지? 지워도 ㅇㅇ 가능ㄴㅇ
-        }
     }
 }

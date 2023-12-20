@@ -7,33 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject knightPrefab; // ÀÓ½ÃÁ¶Ä¡
+    public GameObject knightPrefab; // ï¿½Ó½ï¿½ï¿½ï¿½Ä¡
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
     public GameObject CameraWall;
 
+    public int enemyDeathCount = 0; // ï¿½ï¿½ï¿½Ä«ï¿½ï¿½Æ®
+    private int TotalDeathCount = 5; // 5ï¿½Ì»ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½Å» È°ï¿½ï¿½È­ï¿½ï¿½
 
-    //public EnemyDeath _enemyDeath;
-    public int potalCount;
-    // GameManagerÀÇ ´ÜÀÏ ÀÎ½ºÅÏ½º¸¦ ÀúÀåÇÏ´Â Á¤Àû ¼Ó¼º
+    // GameManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½
     public static GameManager Instance { get; private set; }
 
     private CreateMap createMapScript;
     public int currentStage = 1;
 
-    private int[] stageCorrectPortal = { 2, 3, 1 }; // °¢ ½ºÅ×ÀÌÁö Á¤´ä Æ÷Å» 2(red)-> 3(yellow)-> 1(blue)
+    private int[] stageCorrectPortal = { 2, 3, 1 }; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å» 2(red)-> 3(yellow)-> 1(blue)
+
+    public static event Action EnemyDeathEvent;
 
     private void Awake()
     {
-        // Instance°¡ nullÀÎÁö È®ÀÎÇÑ´Ù. nullÀÌ¸é ÇöÀç °´Ã¼¸¦ Instance·Î ¼³Á¤ÇÑ´Ù.
+        // Instanceï¿½ï¿½ nullï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½. nullï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ Instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(gameObject); // ´Ù¸¥ ÀÎ½ºÅÏ½º°¡ ÀÌ¹Ì Á¸ÀçÇÏ¸é »õ·Î »ý¼ºµÈ °´Ã¼¸¦ ÆÄ±«ÇÑ´Ù.
+            Destroy(gameObject); // ï¿½Ù¸ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½Ñ´ï¿½.
         }
+
+        EnemyDeathEvent += EnemyDead;
     }
     void Start()
     {
@@ -42,9 +46,28 @@ public class GameManager : MonoBehaviour
         InstantiateCameraWall();
     }
 
-    
+    private void OnDestroy()
+    {
+        EnemyDeathEvent -= EnemyDead;
+    }
 
-   
+    public void OnEnemyDead()
+    {
+        EnemyDeathEvent?.Invoke();
+    }
+
+    void InstantiateKnight()
+    {
+
+        Instantiate(knightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+    }
+
+    void InstantPlayerCameraPrefa()
+    {
+        Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
     void InstantiateUI()
     {
         Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
@@ -89,17 +112,15 @@ public class GameManager : MonoBehaviour
         createMapScript.PlacePortals();
     }
 
-    public bool EnemyAllDeath()
+    public void EnemyDead()
     {
-        Debug.Log(potalCount + "gameManager");
-        if (potalCount >= 5)
+        enemyDeathCount++;
+        if (enemyDeathCount >= TotalDeathCount)
         {
-
-            return true;
-        }
-        else
-        {
-            return false;
+            foreach (var portal in FindObjectsOfType<Portal>())
+            {
+                portal.SetActiveState(true);
+            }
         }
     }
 }
