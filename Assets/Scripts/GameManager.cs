@@ -13,13 +13,14 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryUIPrefab;
     public GameObject CameraWall;
     public EnemySpawn enemySpawn;
+    public GameObject mapData;
     public int enemyDeathCount = 0; 
     private int TotalDeathCount = 5;
     public int stageNumber = 1;
 
     public static GameManager Instance { get; private set; }
 
-    private CreateMap createMapScript;
+    public CreateMap createMapScript;
     public int currentStage = 1;
 
     private int[] stageCorrectPortal = { 2, 3, 1 }; // 포탈 순서 2(red)-> 3(yellow)-> 1(blue)
@@ -36,7 +37,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         EnemyDeathEvent += EnemyDead;
     }
     void Start()
