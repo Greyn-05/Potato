@@ -42,6 +42,8 @@ public class CreateMap : MonoBehaviour
 
     private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // 프리팹 데이터 저장 배열
 
+    public LayerMask layerMaskForPlacementCheck; // 레이어 지정
+
 
     private void Start()
     {
@@ -135,8 +137,7 @@ public class CreateMap : MonoBehaviour
             float trapY = groundPrefab.position.y + (groundPrefab.height / 2); 
 
             GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
-
-            trapInstance.transform.position = groundPrefab.position;
+            trapInstance.layer = LayerMask.NameToLayer("Trap");
 
             groundPrefabs.RemoveAt(randomIndex); 
         }
@@ -162,7 +163,8 @@ public class CreateMap : MonoBehaviour
             float boxX = selectedGround.position.x;
             float boxY = selectedGround.position.y - 0.5f;
             
-            Instantiate (goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
+            GameObject boxInstance = Instantiate(goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
+            boxInstance.layer = LayerMask.NameToLayer("Box");
         }
     }
 
@@ -200,22 +202,25 @@ public class CreateMap : MonoBehaviour
                 {
                     GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
                     Portal portalScript = portalInstance.GetComponent<Portal>();
+                    portalInstance.layer = LayerMask.NameToLayer("Portal");
 
                     if (portalScript != null)
                     {
                         portalScript.portalIndex = i + 1;
-                        portalScript.CheckPortalActive();
                     }
 
                     placed = true;
+                }
+
+                if (placed)
+                {
+                    break;
                 }
 
                 attempts++;
             }
         }
     }
-
-    public LayerMask layerMaskForPlacementCheck;
 
     private bool IsTrapAndBox(Vector2 position, float tolerance = 0.1f)
     {

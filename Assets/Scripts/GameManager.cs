@@ -1,4 +1,4 @@
-using Cinemachine;
+ï»¿using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,33 +7,36 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject knightPrefab; // ÀÓ½ÃÁ¶Ä¡
+    public GameObject knightPrefab;
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
+    public GameObject inventoryUIPrefab;
     public GameObject CameraWall;
 
+    public int enemyDeathCount = 0; 
+    private int TotalDeathCount = 5;
 
-    //public EnemyDeath _enemyDeath;
-    public int potalCount;
-    // GameManagerÀÇ ´ÜÀÏ ÀÎ½ºÅÏ½º¸¦ ÀúÀåÇÏ´Â Á¤Àû ¼Ó¼º
     public static GameManager Instance { get; private set; }
 
     private CreateMap createMapScript;
     public int currentStage = 1;
 
-    private int[] stageCorrectPortal = { 2, 3, 1 }; // °¢ ½ºÅ×ÀÌÁö Á¤´ä Æ÷Å» 2(red)-> 3(yellow)-> 1(blue)
+    private int[] stageCorrectPortal = { 2, 3, 1 }; // í¬íƒˆ ìˆœì„œ 2(red)-> 3(yellow)-> 1(blue)
+
+    public static event Action EnemyDeathEvent;
 
     private void Awake()
     {
-        // Instance°¡ nullÀÎÁö È®ÀÎÇÑ´Ù. nullÀÌ¸é ÇöÀç °´Ã¼¸¦ Instance·Î ¼³Á¤ÇÑ´Ù.
         if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(gameObject); // ´Ù¸¥ ÀÎ½ºÅÏ½º°¡ ÀÌ¹Ì Á¸ÀçÇÏ¸é »õ·Î »ý¼ºµÈ °´Ã¼¸¦ ÆÄ±«ÇÑ´Ù.
+            Destroy(gameObject);
         }
+
+        EnemyDeathEvent += EnemyDead;
     }
     void Start()
     {
@@ -42,12 +45,32 @@ public class GameManager : MonoBehaviour
         InstantiateCameraWall();
     }
 
-    
+    private void OnDestroy()
+    {
+        EnemyDeathEvent -= EnemyDead;
+    }
 
-   
+    public void OnEnemyDead()
+    {
+        EnemyDeathEvent?.Invoke();
+    }
+
+    void InstantiateKnight()
+    {
+
+        Instantiate(knightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+    }
+
+    void InstantPlayerCameraPrefa()
+    {
+        Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
     void InstantiateUI()
     {
         Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
+        Instantiate(inventoryUIPrefab);
     }
 
     private void InstantiateCameraWall()
@@ -89,17 +112,15 @@ public class GameManager : MonoBehaviour
         createMapScript.PlacePortals();
     }
 
-    public bool EnemyAllDeath()
+    public void EnemyDead()
     {
-        Debug.Log(potalCount + "gameManager");
-        if (potalCount >= 5)
+        enemyDeathCount++;
+        if (enemyDeathCount >= TotalDeathCount)
         {
-
-            return true;
-        }
-        else
-        {
-            return false;
+            foreach (var portal in FindObjectsOfType<Portal>())
+            {
+                portal.SetActiveState(true);
+            }
         }
     }
 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class Box : MonoBehaviour
 {
-    public Animator _animator;
+    [SerializeField] private Animator animator;
+
     public GameObject[] itemPrefabs;
     private bool isOpen = false;
 
@@ -20,8 +22,9 @@ public class Box : MonoBehaviour
     private void OpenBox()
     {
         isOpen = true;
-        _animator.SetBool("IsOpened", true);
+        animator.SetBool("IsOpened", true);
         InstantiateRandomItem();
+        Destroy(gameObject, 2f);
     }
 
     private void InstantiateRandomItem()

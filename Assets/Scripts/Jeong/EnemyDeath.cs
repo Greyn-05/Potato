@@ -31,6 +31,7 @@ public class EnemyDeath : MonoBehaviour
     {
         // 게임 오브젝트 파괴
         Destroy(gameObject);
+
         if (choiceDropHPPotion == true)
         {
             // 50% 확률로 체크
@@ -49,10 +50,9 @@ public class EnemyDeath : MonoBehaviour
                 // 필요한 경우 Rigidbody2D 컴포넌트 추가 및 설정
                 Rigidbody2D rb = instantiatedItem.AddComponent<Rigidbody2D>();
                 // 예: rb.gravityScale = 1;
+
+                GameManager.Instance.OnEnemyDead();
             }
         }
-        GameManager.Instance.potalCount++;
     }
-
-    
 }
