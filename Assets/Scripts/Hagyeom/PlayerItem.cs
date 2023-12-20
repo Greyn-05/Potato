@@ -24,7 +24,7 @@ public class PlayerItem : MonoBehaviour
 
     public void CallPosionEndEvent(CharacterStatus status, float time)
     {
-        WaitForIt(time);
+       StartCoroutine(WaitForIt(time));
     }
 
     IEnumerator WaitForIt(float time)

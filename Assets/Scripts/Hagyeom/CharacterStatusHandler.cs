@@ -72,15 +72,6 @@ public class CharacterStatusHandler : MonoBehaviour
 
         SetCurrentStatus();
         LimitAllStatus();
-
-        Debug.Log("maxHP" + CurrentStatus.maxHealth);
-        Debug.Log("atk" + CurrentStatus.atk);
-        Debug.Log("def" + CurrentStatus.def);
-        Debug.Log("moveSpeed" + CurrentStatus.moveSpeed);
-        Debug.Log("AttackSpeed" + CurrentStatus.attackSpeed);
-        Debug.Log("jumpPower" + CurrentStatus.jumpPower);
-        Debug.Log("jumpcooldown" + CurrentStatus.jumpCooldown);
-
     }
 
 
