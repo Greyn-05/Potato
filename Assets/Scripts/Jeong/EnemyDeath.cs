@@ -32,7 +32,7 @@ public class EnemyDeath : MonoBehaviour
         if (choiceDropHPPotion == true)
         {
             // 50% 확률로 체크
-            if (Random.value < 0.5f)
+            if (Random.value < 1f)
             {
                 // 현재 게임 오브젝트 위치에서 Y축으로 1 단위 위에 HPPotionItem 프리팹 인스턴스화
                 GameObject instantiatedItem = Instantiate(HPPotionItemPrefab, transform.position + Vector3.up * 1f, transform.rotation);

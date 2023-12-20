@@ -13,7 +13,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        //SceneManager.LoadSceneAsync("JHS", LoadSceneMode.Additive); //현재 씬에서 JHS씬을 추가로 불러온다.******************비동기식 (동기,비동기)
         _rigidBody2D = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         lastJumpTime = Time.time - enemyStats.jumpCooldown; // 초기화
