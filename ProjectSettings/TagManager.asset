@@ -10,6 +10,8 @@ TagManager:
   - Trap
   - Box
   - Portal
+  - Wall
+  - testplayer
   layers:
   - Default
   - TransparentFX
@@ -21,6 +23,7 @@ TagManager:
   - 
   - 
   - 
+  - Item
   - 
   - 
   - 
@@ -38,11 +41,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Trap
+  - Box
+  - Portal
   m_SortingLayers:
   - name: Default
     uniqueID: 0

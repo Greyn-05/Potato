@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 815737275981315175}
   - component: {fileID: 3053391902871713748}
   - component: {fileID: 4530567001947023226}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4897,7 +4897,7 @@ GameObject:
   - component: {fileID: 6064861972891875869}
   - component: {fileID: 4830395805574880259}
   - component: {fileID: 6865950970557283952}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: CircleSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9735,7 +9735,8 @@ GameObject:
   - component: {fileID: 4523752998031931352}
   - component: {fileID: 8014475038000807525}
   - component: {fileID: -1125518892017703300}
-  m_Layer: 0
+  - component: {fileID: 7221893067916236618}
+  m_Layer: 31
   m_Name: Portal_Blue(1)
   m_TagString: Portal
   m_Icon: {fileID: 0}
@@ -9758,7 +9759,7 @@ Transform:
   - {fileID: 4096230940133596495}
   - {fileID: 815737275981315175}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4523752998031931352
 ParticleSystem:
@@ -14625,6 +14626,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae2e266015113448adb1b9148c24982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalIndex: 1
+--- !u!70 &7221893067916236618
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430358479322250631}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.2, y: 1.6}
+  m_Direction: 0
 --- !u!1 &5823473317334162356
 GameObject:
   m_ObjectHideFlags: 0
@@ -14636,7 +14673,7 @@ GameObject:
   - component: {fileID: 4096230940133596495}
   - component: {fileID: 5375154197419319457}
   - component: {fileID: 6615403814938801469}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

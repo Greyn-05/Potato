@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7394387508718882202}
   - component: {fileID: 9153875957638950203}
   - component: {fileID: 8287311044361812047}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: CircleSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4848,7 +4848,7 @@ GameObject:
   - component: {fileID: 5637225312350928547}
   - component: {fileID: 4288292384735103687}
   - component: {fileID: 2129289622256399445}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9734,7 +9734,7 @@ GameObject:
   - component: {fileID: 3284329979720440590}
   - component: {fileID: 5514313057508736786}
   - component: {fileID: 1715279633145771349}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14572,7 +14572,8 @@ GameObject:
   - component: {fileID: 4211809025068155499}
   - component: {fileID: 5350548557549476081}
   - component: {fileID: -7918582052156125789}
-  m_Layer: 0
+  - component: {fileID: 4655804254503721043}
+  m_Layer: 31
   m_Name: Portal_Red(2)
   m_TagString: Portal
   m_Icon: {fileID: 0}
@@ -19462,3 +19463,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae2e266015113448adb1b9148c24982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalIndex: 2
+--- !u!70 &4655804254503721043
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434744520926208677}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.2, y: 1.6}
+  m_Direction: 0
