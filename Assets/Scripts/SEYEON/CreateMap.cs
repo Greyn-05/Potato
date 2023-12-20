@@ -181,25 +181,26 @@ public class CreateMap : MonoBehaviour
 
     public void PlacePortals()
     {
-        List<PrefabData> groundPrefabs = new List<PrefabData>(createdPrefabsData);
-
         for (int i = 0; i < portalPrefabs.Length; i++)
         {
             bool placed = false;
             int attempts = 0;
 
-            while (!placed && attempts < 500) // 최대 500번 시도
+            while (!placed && attempts < 100) // 최대 100번 시도
             {
-                int randomIndex = Random.Range(0, groundPrefabs.Count);
-                PrefabData groundPrefab = groundPrefabs[randomIndex];
+                int randomIndex = Random.Range(0, createdPrefabsData.Count);
+                PrefabData groundPrefab = createdPrefabsData[randomIndex];
 
                 float portalX = groundPrefab.position.x;
                 float portalY = groundPrefab.position.y + (groundPrefab.height / 2);
 
-                if (!IsTrapAndBox(new Vector2(portalX, portalY), 0.1f)) // 0.1f는 허용오차
+                Collider2D collider = Physics2D.OverlapCircle(new Vector2(portalX, portalY), 0.5f, layerMaskForPlacementCheck);
+
+                if (collider == null)
                 {
                     GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
                     Portal portalScript = portalInstance.GetComponent<Portal>();
+
                     if (portalScript != null)
                     {
                         portalScript.portalIndex = i + 1;
@@ -208,10 +209,13 @@ public class CreateMap : MonoBehaviour
 
                     placed = true;
                 }
+
                 attempts++;
             }
         }
     }
+
+    public LayerMask layerMaskForPlacementCheck;
 
     private bool IsTrapAndBox(Vector2 position, float tolerance = 0.1f)
     {

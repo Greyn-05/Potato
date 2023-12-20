@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6322378699857805431}
   - component: {fileID: -6036732849235178780}
   - component: {fileID: 3404044368086786127}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: GoldBox
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5182123652994217145}
   - component: {fileID: 6128813194722745361}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

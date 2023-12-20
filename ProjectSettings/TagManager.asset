@@ -42,9 +42,9 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
+  - Trap
+  - Box
+  - Portal
   m_SortingLayers:
   - name: Default
     uniqueID: 0
