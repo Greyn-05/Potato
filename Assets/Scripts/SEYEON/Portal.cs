@@ -6,9 +6,11 @@ public class Portal : MonoBehaviour
 {
     public int portalIndex;
     private bool isActive;
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.CompareTag("Player") && isActive)
         {
             Debug.Log("good");

@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
     public GameObject UIprefab;
     public GameObject inventoryUIPrefab;
     public GameObject CameraWall;
-
+    public EnemySpawn enemySpawn;
     public int enemyDeathCount = 0; 
     private int TotalDeathCount = 5;
+    public int stageNumber = 1;
 
     public static GameManager Instance { get; private set; }
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
         InstantiateUI();
         InstantiateCameraWall();
+        TriggerEnemySpawn(stageNumber); // StageNumber
     }
 
     private void OnDestroy()
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
         if (portalIndex == stageCorrectPortal[currentStage - 1])
         {
             GoToNextStage();
+            int stageNum = ++stageNumber;
+            TriggerEnemySpawn(stageNum);
         }
         else
         {
@@ -123,4 +127,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void TriggerEnemySpawn(int stageCount)
+    {
+        enemySpawn.StartSpawn(stageCount);
+    }
 }
+
