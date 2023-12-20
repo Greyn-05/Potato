@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -814567614, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
     attackSpeed: 0
     jumpPower: 0
     jumpCooldown: 0
-    commonStatus: {fileID: 0}
-  itemImage: {fileID: 0}
+    commonStatus: {fileID: 11400000, guid: 2fd6a3bd816c3ff41825f6dddc8b9e87, type: 2}
+  itemImage: {fileID: 8575132926966724862, guid: 7f4336520f0bf594e8dc96cb93ac9589, type: 3}
 --- !u!61 &4529247184451966977
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -157,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8125, y: 0.8125}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!50 &-1071028401126756745
 Rigidbody2D:

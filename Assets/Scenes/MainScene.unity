@@ -282,6 +282,7 @@ MonoBehaviour:
   knightPrefab: {fileID: 1000010755293042, guid: a8e1043c85ffaee4facfa0c8fa0ce190, type: 3}
   PlayerCameraPrefab: {fileID: 3162630397164451101, guid: 39e8e766a82d7844885d4763c9541aed, type: 3}
   UIprefab: {fileID: 8897140288538807387, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+  inventoryUIPrefab: {fileID: 9215254087197607050, guid: e46a4fbda4da75e47a0d4f5fcb266f74, type: 3}
   CameraWall: {fileID: 1251233552615435054, guid: 4a6216e95b792d54da40965844fac271, type: 3}
   potalCount: 0
   currentStage: 1

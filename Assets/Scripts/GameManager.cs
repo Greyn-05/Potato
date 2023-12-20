@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject knightPrefab; // 임시조치
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
+    public GameObject inventoryUIPrefab;
     public GameObject CameraWall;
 
 
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
     void InstantiateUI()
     {
         Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
+        Instantiate(inventoryUIPrefab);
     }
 
     private void InstantiateCameraWall()

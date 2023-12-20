@@ -22,6 +22,7 @@ public class Box : MonoBehaviour
         isOpen = true;
         _animator.SetBool("IsOpened", true);
         InstantiateRandomItem();
+        Destroy(gameObject, 2f);
     }
 
     private void InstantiateRandomItem()
