@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
     public void EnemyDead()
     {
         enemyDeathCount++;
+
         if (enemyDeathCount >= TotalDeathCount)
         {
             foreach (var portal in FindObjectsOfType<Portal>())
