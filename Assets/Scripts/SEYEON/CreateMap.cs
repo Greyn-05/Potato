@@ -126,11 +126,20 @@ public class CreateMap : MonoBehaviour
             PrefabData groundPrefab = groundPrefabs[randomIndex];
 
             float trapX = groundPrefab.position.x;
-            float trapY = groundPrefab.position.y + groundPrefab.height * 0.5f;
+            float trapY = groundPrefab.position.y + (groundPrefab.height / 2); // 땅 프리팹의 세로 길이의 절반을 더함
 
-            Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
+            GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
 
-            groundPrefabs.RemoveAt(randomIndex);
+            // BoxCollider2D trapCollider = trapInstance.GetComponent<BoxCollider2D>();
+
+            //if (trapCollider != null)
+            //{
+            //    float trapOffsetY = trapCollider.size.y * trapInstance.transform.localScale.y / 2;
+
+            trapInstance.transform.position = groundPrefab.position;
+            //}
+
+            groundPrefabs.RemoveAt(randomIndex); // 사용한 땅 프리팹은 리스트에서 제거
         }
     }
 }
