@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010755293042, guid: a8e1043c85ffaee4facfa0c8fa0ce190, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011028196368, guid: a8e1043c85ffaee4facfa0c8fa0ce190, type: 3}
       propertyPath: m_RootOrder
@@ -378,9 +378,17 @@ PrefabInstance:
       propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1539669095295838062, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2348293055624870422, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
       propertyPath: m_Name
       value: Status
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105139893586741362, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6053037290001968800, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
       propertyPath: m_Pivot.x
@@ -473,6 +481,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1499529629870457994, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+    - {fileID: 9046042198969949847, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+    - {fileID: 491439157013374872, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+    - {fileID: 4868205711930362748, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}

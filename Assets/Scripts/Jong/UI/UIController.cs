@@ -1,3 +1,5 @@
+// UIController.cs
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,12 +10,35 @@ public class UIController : MonoBehaviour
     public GameObject gameOverUI;
     private bool statVisible = false;
 
+    private HealthSystem healthSystem;
+
+    private void Start()
+    {
+        healthSystem = FindObjectOfType<HealthSystem>();
+        if (healthSystem != null)
+        {
+            healthSystem.OnDeath += HandleDeath;
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleUI();
         }
+    }
+
+    private void ToggleUI()
+    {
+        statVisible = !statVisible;
+        status.gameObject.SetActive(statVisible);
+        Debug.Log(statVisible ? "생겨라!" : "사라져라!");
+    }
+
+    private void HandleDeath()
+    {
+        Gameover();
     }
 
     public void Gameover()
@@ -29,14 +54,5 @@ public class UIController : MonoBehaviour
     public void ExitMenu()
     {
         SceneManager.LoadScene("StartScene");
-    }
-
-
-    private void ToggleUI()
-    {
-        statVisible = !statVisible;
-
-        status.gameObject.SetActive(statVisible);
-        Debug.Log(statVisible ? "생겨라!" : "사라져라!");
     }
 }

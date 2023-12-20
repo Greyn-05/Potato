@@ -10,14 +10,15 @@ public class HUD : MonoBehaviour
 
     Text mytext;
     Slider myslider;
-    CommonStatus commonStatusInstance;
+    CharacterStatus commonStatusInstance;
     HealthSystem healthSystemInstance;
 
     private void Awake()
     {
         mytext = GetComponent<Text>();
         myslider = GetComponent<Slider>();
-        commonStatusInstance = ScriptableObject.CreateInstance<CommonStatus>();
+        commonStatusInstance = FindObjectOfType<CharacterStatusHandler>().CurrentStatus;
+        healthSystemInstance = FindObjectOfType<HealthSystem>();
     }
 
     private void LateUpdate()
@@ -29,17 +30,9 @@ public class HUD : MonoBehaviour
                 float curhp = healthSystemInstance.CurrentHealth;
                 myslider.value = curhp / maxhp;
                 break;
-            case InfoType.Gold:
-                float curgold = 100; //이후 유저 소유 골드로 변경해야함
-                mytext.text = curgold.ToString();
-                break;
             case InfoType.Atk:
                 float atk = commonStatusInstance.atk;
                 mytext.text = atk.ToString();
-                break;
-            case InfoType.Def:
-                float def = commonStatusInstance.def;
-                mytext.text += def.ToString();
                 break;
             case InfoType.AS:
                 float atks = commonStatusInstance.attackSpeed;
