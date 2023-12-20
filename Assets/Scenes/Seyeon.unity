@@ -259,6 +259,9 @@ MonoBehaviour:
   - {fileID: 4430358479322250631, guid: 99c6ce5dbac75f34694e89329a9f3986, type: 3}
   - {fileID: 8434744520926208677, guid: fa9a10cc98d2c16449fc71efaf9a34a2, type: 3}
   - {fileID: 1853242937341211386, guid: 4cfdb3780573fef4090fc6fd8e2f7a5c, type: 3}
+  layerMaskForPlacementCheck:
+    serializedVersion: 2
+    m_Bits: 3758096384
 --- !u!4 &2072738813
 Transform:
   m_ObjectHideFlags: 0
