@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Character
 {
-    Knight, Thief
+    Knight, Thief, Soldier, Null
 }
 public class DataMgr : MonoBehaviour
 {
@@ -15,8 +15,5 @@ public class DataMgr : MonoBehaviour
         else if (instance != null) return;
         DontDestroyOnLoad(gameObject);
     }
-
     public Character currentCharacter;
-
-
 }

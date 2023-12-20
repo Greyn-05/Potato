@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8826857472520904929}
   - component: {fileID: 2795541516979831150}
   - component: {fileID: 6230688628545391900}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Portal_Yellow(3)
   m_TagString: Portal
   m_Icon: {fileID: 0}
@@ -4950,7 +4950,7 @@ GameObject:
   - component: {fileID: 8329064862784792353}
   - component: {fileID: 7723601224607239669}
   - component: {fileID: 980723886012136709}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: CircleSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9787,7 +9787,7 @@ GameObject:
   - component: {fileID: 8243919573846428166}
   - component: {fileID: 5270779976347082216}
   - component: {fileID: 4785673954057501145}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14673,7 +14673,7 @@ GameObject:
   - component: {fileID: 7220867493822449683}
   - component: {fileID: 8540326340778847511}
   - component: {fileID: 849603784749370973}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

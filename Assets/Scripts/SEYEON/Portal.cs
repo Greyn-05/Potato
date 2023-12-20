@@ -7,15 +7,16 @@ public class Portal : MonoBehaviour
     public int portalIndex;
     private bool isActive;
 
-    private void Start()
+    public void Update()
     {
         CheckPortalActive();
+
     }
    
 
     public void CheckPortalActive()
     {
-        isActive = CheckAllMonsterDead();
+        isActive = GameManager.Instance.EnemyAllDeath();
     }
 
 
@@ -23,14 +24,16 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player") && isActive)
         {
+            Debug.Log("good");
             GameManager.Instance.EnterPortal(portalIndex);
+            GameManager.Instance.potalCount = 0;
         }
     }
 
 
-    private bool CheckAllMonsterDead()
-    {
-        // 몬스터 전부 잡았는지 확인
-        return false;
-    }
+    //private bool CheckAllMonsterDead()
+    //{
+    //    // 몬스터 전부 잡았는지 확인
+    //    return false;
+    //}
 }
