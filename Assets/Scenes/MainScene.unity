@@ -286,11 +286,12 @@ MonoBehaviour:
   inventoryUIPrefab: {fileID: 9215254087197607050, guid: e46a4fbda4da75e47a0d4f5fcb266f74, type: 3}
   CameraWall: {fileID: 1251233552615435054, guid: 4a6216e95b792d54da40965844fac271, type: 3}
   enemySpawn: {fileID: 536024942}
-  mapData: {fileID: 3157340203655550959, guid: ef65820a75591e444be2aedc7a101a76, type: 3}
+  mapData: {fileID: 0}
   enemyDeathCount: 0
   stageNumber: 1
   createMapScript: {fileID: 0}
   currentStage: 1
+  mapCreator: {fileID: 2434531486326690282, guid: 8bfb1a15b3e0210449584b466afad3df, type: 3}
 --- !u!4 &536024941
 Transform:
   m_ObjectHideFlags: 0

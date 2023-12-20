@@ -35,13 +35,9 @@ public class CreateMap : MonoBehaviour
 
     public GameObject trapPrefabs; // 함정
     public int numberOfTraps; // 함정 갯수
-
     public GameObject goldBox; // 금박스
-
     public GameObject[] portalPrefabs; // 포탈 프리팹
-
     private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // 프리팹 데이터 저장 배열
-
     public LayerMask layerMaskForPlacementCheck; // 레이어 지정
 
     private void Start()
@@ -98,7 +94,7 @@ public class CreateMap : MonoBehaviour
 
             if (positionIsValid)
             {
-                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity);
+                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity).transform.parent = this.transform;
                 createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight, isGround = true });
                 createdPrefabCount++;
                 attemptCount = 0;
@@ -140,6 +136,7 @@ public class CreateMap : MonoBehaviour
             float trapY = groundPrefab.position.y + (groundPrefab.height / 2) - 0.7f;
 
             GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
+            trapInstance.transform.parent = this.transform;
             trapInstance.layer = LayerMask.NameToLayer("Trap");
 
             groundPrefabs.RemoveAt(randomIndex);
@@ -167,6 +164,7 @@ public class CreateMap : MonoBehaviour
             float boxY = selectedGround.position.y - 0.5f + 0.2f;
 
             GameObject boxInstance = Instantiate(goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
+            boxInstance.transform.parent = this.transform;
             boxInstance.layer = LayerMask.NameToLayer("Box");
         }
     }
@@ -203,6 +201,7 @@ public class CreateMap : MonoBehaviour
                 if (!IsTrapAndBox(portalPosition, 0.3f))
                 {
                     GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
+                    portalInstance.transform.parent = this.transform;
                     Portal portalScript = portalInstance.GetComponent<Portal>();
                     portalInstance.layer = LayerMask.NameToLayer("Portal");
 

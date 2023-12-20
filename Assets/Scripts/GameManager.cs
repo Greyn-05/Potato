@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public static event Action EnemyDeathEvent;
 
+    public GameObject mapCreator;
+    public bool nextMapCreator;
     private void Awake()
     {
         if (Instance == null)
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
+        Instantiate(mapCreator);
         InstantiateUI();
         InstantiateCameraWall();
         TriggerEnemySpawn(stageNumber); // StageNumber
@@ -106,14 +109,18 @@ public class GameManager : MonoBehaviour
     private void GoToNextStage()
     {
         currentStage++;
-        createMapScript.PlaceMap();
-        createMapScript.PlacePortals();
+        nextMapCreator = true;
+         Instantiate(mapCreator);
+         //createMapScript.PlaceMap();
+         //createMapScript.PlacePortals();
     }
 
     private void RestartCurrentStage()
     {
-        createMapScript.PlaceMap();
-        createMapScript.PlacePortals();
+        nextMapCreator = true;
+        Instantiate(mapCreator);
+        //createMapScript.PlaceMap();
+        //createMapScript.PlacePortals();
     }
 
     public void EnemyDead()
