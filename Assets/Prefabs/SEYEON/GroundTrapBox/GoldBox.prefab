@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c6bf38266c80348a2f57d30234d34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 6322378699857805431}
+  animator: {fileID: 6322378699857805431}
   itemPrefabs:
   - {fileID: 8984043489522618467, guid: 4fc8978dd2937b1448c1f4359dea5e19, type: 3}
   - {fileID: 6154101467565060567, guid: b70daeef3062c3e469af215a24fc01d5, type: 3}
