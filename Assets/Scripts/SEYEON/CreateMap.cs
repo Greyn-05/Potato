@@ -236,6 +236,146 @@ public class CreateMap : MonoBehaviour
 
 
 
+//--
+
+
+
+
+//using System;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using Random = UnityEngine.Random;
+
+//[Serializable]
+//public class MapPrefab
+//{
+//    public GameObject prefab;
+//    public float width;
+//    public float height;
+//}
+
+//[Serializable]
+//public struct PrefabData
+//{
+//    public Vector2 position;
+//    public float width;
+//    public float height;
+//    public bool isGround;
+//}
+
+//public class CreateMap : MonoBehaviour
+//{
+//    public MapPrefab[] mapPrefabs;
+//    public float maxJumpWidth, maxJumpHeight;
+//    public Vector2 startPosition;
+//    public float mapLength, mapHeight;
+//    public float minDistanceBetweenPrefabs, minHeightDifference;
+//    public GameObject trapPrefab, goldBoxPrefab;
+//    public GameObject[] portalPrefabs;
+//    public int numberOfTraps;
+//    public LayerMask layerMaskForPlacementCheck;
+
+//    private List<PrefabData> createdPrefabsData = new List<PrefabData>();
+
+//    private void Start()
+//    {
+//        PlaceMap();
+//    }
+
+//    public void PlaceMap()
+//    {
+//        for (int i = 0; i < mapPrefabs.Length; i++)
+//        {
+//            Vector2 position = FindPositionForPrefab(mapPrefabs[i].width, mapPrefabs[i].height);
+
+//            Instantiate(mapPrefabs[i].prefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
+
+//            createdPrefabsData.Add(new PrefabData { position = position, width = mapPrefabs[i].width, height = mapPrefabs[i].height, isGround = true });
+//        }
+
+//        PlaceSpecialItems();
+//    }
+
+//    private void PlaceSpecialItems()
+//    {
+//        PlaceTraps();
+//        PlaceItem(goldBoxPrefab);
+
+//        foreach (GameObject portalPrefab in portalPrefabs)
+//        {
+//            PlaceItem(portalPrefab);
+//        }
+//    }
+
+//    private void PlaceTraps()
+//    {
+//        for (int i = 0; i < numberOfTraps; i++)
+//        {
+//            PlaceItem(trapPrefab);
+//        }
+//    }
+
+//    private void PlaceItem(GameObject itemPrefab)
+//    {
+//        Vector2 position = FindPositionForItem();
+
+//        if (position != Vector2.zero)
+//        {
+//            Instantiate(itemPrefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
+//            createdPrefabsData.Add(new PrefabData { position = position, width = 1, height = 1, isGround = false });
+//        }
+//    }
+
+//    private Vector2 FindPositionForPrefab(float width, float height)
+//    {
+//        int attempts = 0;
+
+//        while (attempts < 100)
+//        {
+//            Vector2 position = new Vector2(startPosition.x + Random.Range(0, mapLength - width), startPosition.y + Random.Range(0, mapHeight - height));
+
+//            if (IsPositionValid(position, width, height))
+//            {
+//                return position;
+//            }
+
+//            attempts++;
+//        }
+
+//        return Vector2.zero;
+//    }
+
+//    private Vector2 FindPositionForItem()
+//    {
+//        return FindPositionForPrefab(1, 1);
+//    }
+
+//    private bool IsPositionValid(Vector2 position, float width, float height)
+//    {
+//        foreach (var prefabData in createdPrefabsData)
+//        {
+//            float horizontalDistance = Mathf.Abs(prefabData.position.x - position.x) - (prefabData.width / 2 + width / 2);
+//            float verticalDistance = Mathf.Abs(prefabData.position.y - position.y) - (prefabData.height / 2 + height / 2);
+
+//            if (horizontalDistance < minDistanceBetweenPrefabs && verticalDistance < minHeightDifference)
+//            {
+//                return false;
+//            }
+//        }
+
+//        return true;
+//    }
+//}
+
+
+
+
+
+
+//---
+
+
+
 //using System;
 //using System.Collections;
 //using System.Collections.Generic;
