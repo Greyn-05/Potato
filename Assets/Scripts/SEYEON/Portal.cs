@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
     {
         CheckPortalActive();
     }
+   
 
     public void CheckPortalActive()
     {

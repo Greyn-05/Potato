@@ -2511,7 +2511,7 @@ Transform:
   - {fileID: 5500225046709534810}
   - {fileID: 8960422097293720074}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &5650317996094424740
 Grid:

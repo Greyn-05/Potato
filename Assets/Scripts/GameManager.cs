@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject knightPrefab; // 임시조치
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
+    public GameObject CameraWall;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
 
@@ -34,10 +36,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
         InstantiateKnight();
-        InstantPlayerCameraPrefa();
+        //InstantPlayerCameraPrefa();
         InstantiateUI();
+        InstantiateCameraWall();
     }
 
+    
 
     void InstantiateKnight()
     {
@@ -46,13 +50,21 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void InstantPlayerCameraPrefa()
-    {
-        Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-    }
+    //void InstantPlayerCameraPrefa()
+    //{
+    //    Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+    //}
     void InstantiateUI()
     {
         Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
+    }
+
+    private void InstantiateCameraWall()
+    {
+        GameObject newCameraWall =  Instantiate(CameraWall, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject newPlayerCamera = Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0),Quaternion.identity);
+        newPlayerCamera.transform.parent = newCameraWall.transform;
+
     }
 
     public void EnterPortal(int portalIndex)
