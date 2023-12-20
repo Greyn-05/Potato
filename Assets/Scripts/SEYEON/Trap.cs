@@ -10,7 +10,8 @@ public class Trap : MonoBehaviour
     {
         if (other.CompareTag("Player")) // 플레이어 태그와 충돌했는지 확인
         {
-            //플레이어에게 데미지 들어가는 로직
+            HealthSystem healthSystem = other.GetComponent<HealthSystem>();
+            healthSystem.ChangeHealth(-TrapDamage);
         }
         else if (other.CompareTag("Enemy"))
         {
