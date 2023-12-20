@@ -18,5 +18,5 @@ MonoBehaviour:
   def: 5
   moveSpeed: 5
   attackSpeed: 1
-  jumpPower: 10
+  jumpPower: 50
   jumpCooldown: 1

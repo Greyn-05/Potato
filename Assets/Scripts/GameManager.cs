@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
 
+
     public EnemyDeath _enemyDeath;
     public int potalCount;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
@@ -36,7 +37,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
-        InstantiateKnight();
         InstantPlayerCameraPrefa();
         InstantiateUI();
     }
