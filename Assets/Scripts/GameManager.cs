@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour
     public GameObject knightPrefab; // 임시조치
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
+
+    public EnemyDeath _enemyDeath;
+    public int potalCount;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
 
     private CreateMap createMapScript;
     public int currentStage = 1;
-    
+
     private int[] stageCorrectPortal = { 2, 3, 1 }; // 각 스테이지 정답 포탈 2(red)-> 3(yellow)-> 1(blue)
 
     private void Awake()
@@ -41,9 +44,9 @@ public class GameManager : MonoBehaviour
 
     void InstantiateKnight()
     {
-        
+
         Instantiate(knightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        
+
     }
 
     void InstantPlayerCameraPrefa()
@@ -52,9 +55,8 @@ public class GameManager : MonoBehaviour
     }
     void InstantiateUI()
     {
-        Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
+        Instantiate(UIprefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
-
 
     public void EnterPortal(int portalIndex)
     {
@@ -84,5 +86,19 @@ public class GameManager : MonoBehaviour
     {
         createMapScript.PlaceMap();
         createMapScript.PlacePortals();
+    }
+
+    public bool EnemyAllDeath()
+    {
+        Debug.Log(potalCount + "gameManager");
+        if (potalCount >= 5)
+        {
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

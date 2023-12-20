@@ -10,6 +10,8 @@ public class EnemyDeath : MonoBehaviour
     public GameObject HPPotionItemPrefab; // HPPotionItem 프리팹에 대한 공개 참조
     public bool choiceDropHPPotion; // HPPotion을 해당 Enemy에게 Drop 시킬건지 체크
 
+    
+
     private void Awake()
     {
         _enemyHealth.hp = _enemyHealth.maxHealth; // 초기 체력 설정
@@ -49,5 +51,8 @@ public class EnemyDeath : MonoBehaviour
                 // 예: rb.gravityScale = 1;
             }
         }
+        GameManager.Instance.potalCount++;
     }
+
+    
 }
