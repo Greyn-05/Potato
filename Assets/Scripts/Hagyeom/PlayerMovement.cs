@@ -12,7 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _direction;
     private Rigidbody2D _rigidbody;
     private CharacterStatusHandler _status;
+    private HealthSystem _healthSystem;
     private float lastJumpTime;
+    private float _knockbackDuration = 0.0f;
+    private Vector2 _knockback = Vector2.zero;
+    
 
     #endregion
 
@@ -22,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _status = GetComponent<CharacterStatusHandler>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _healthSystem = GetComponent<HealthSystem>();
     }
 
     private void Start()
@@ -29,12 +34,19 @@ public class PlayerMovement : MonoBehaviour
         _controller.OnMoveEvent += SetMoveDirection;
         _controller.OnJumpEvent += Jump;
         _controller.OnLookEvent += FlipPlayer;
-        lastJumpTime = Time.time - _status.CurrentStatus.commonStatus.jumpCooldown;
+        _healthSystem.OnDamage += SetKnockback;
+        lastJumpTime = Time.time - _status.CurrentStatus.jumpCooldown;
     }
+
+    
 
     private void FixedUpdate()
     {
         Move(_direction);
+        if (_knockbackDuration > 0.0f)
+        {
+            _knockbackDuration -= Time.fixedDeltaTime;
+        }
 
     }
     #endregion
@@ -48,17 +60,27 @@ public class PlayerMovement : MonoBehaviour
     private void Move(Vector2 direction)
     {
         Vector2 currentVelocity = _rigidbody.velocity;
-        currentVelocity.x = direction.x * _status.CurrentStatus.commonStatus.moveSpeed;
+        currentVelocity.x = direction.x * _status.CurrentStatus.moveSpeed;
+        if (_knockbackDuration > 0.0f)
+        {
+            currentVelocity.x = -_knockback.x * 5f;
+        }
         _rigidbody.velocity = currentVelocity;
+    }
+
+    private void SetKnockback()
+    {
+        _knockbackDuration = 0.3f;
+        _knockback = _direction;
     }
     #endregion
 
     #region Jump
     private void Jump()
     {
-        if (Time.time > lastJumpTime + _status.CurrentStatus.commonStatus.jumpCooldown)
+        if (Time.time > lastJumpTime + _status.CurrentStatus.jumpCooldown)
         {
-            _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.commonStatus.jumpPower, ForceMode2D.Impulse);
+            _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.jumpPower, ForceMode2D.Impulse);
             lastJumpTime = Time.time;
         }
     }
