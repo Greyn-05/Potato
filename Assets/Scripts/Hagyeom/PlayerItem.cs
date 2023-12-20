@@ -17,6 +17,7 @@ public class PlayerItem : MonoBehaviour
         if (potionTime)
         {
             potionTime = false;
+            Debug.Log("Jump!");
             CallPosionEndEvent(status, time);
         }
     }
@@ -24,11 +25,11 @@ public class PlayerItem : MonoBehaviour
     public void CallPosionEndEvent(CharacterStatus status, float time)
     {
         WaitForIt(time);
-        OnPotionEnd?.Invoke(status);
     }
 
     IEnumerator WaitForIt(float time)
     {
         yield return new WaitForSeconds(time);
+        OnPotionEnd?.Invoke(status);
     }
 }

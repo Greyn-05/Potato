@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         _controller.OnMoveEvent += SetMoveDirection;
         _controller.OnJumpEvent += Jump;
         _controller.OnLookEvent += FlipPlayer;
-        lastJumpTime = Time.time - _status.CurrentStatus.commonStatus.jumpCooldown;
+        lastJumpTime = Time.time - _status.CurrentStatus.jumpCooldown;
     }
 
     private void FixedUpdate()
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move(Vector2 direction)
     {
         Vector2 currentVelocity = _rigidbody.velocity;
-        currentVelocity.x = direction.x * _status.CurrentStatus.commonStatus.moveSpeed;
+        currentVelocity.x = direction.x * _status.CurrentStatus.moveSpeed;
         _rigidbody.velocity = currentVelocity;
     }
     #endregion
@@ -56,9 +56,9 @@ public class PlayerMovement : MonoBehaviour
     #region Jump
     private void Jump()
     {
-        if (Time.time > lastJumpTime + _status.CurrentStatus.commonStatus.jumpCooldown)
+        if (Time.time > lastJumpTime + _status.CurrentStatus.jumpCooldown)
         {
-            _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.commonStatus.jumpPower, ForceMode2D.Impulse);
+            _rigidbody.AddForce(Vector2.up * _status.CurrentStatus.jumpPower, ForceMode2D.Impulse);
             lastJumpTime = Time.time;
         }
     }

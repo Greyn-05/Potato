@@ -31,6 +31,7 @@ public class CharacterStatusHandler : MonoBehaviour
     #region Modifier
     public void AddStatModifier(CharacterStatus statusModifier)
     {
+        Debug.Log(statsModifiers.Count());
         statsModifiers.Add(statusModifier);
         UpdatePlayerStatus();
     }
@@ -46,21 +47,12 @@ public class CharacterStatusHandler : MonoBehaviour
     #region UpdateStatus
     private void UpdatePlayerStatus()
     {
-        // baseStatus 입력
-        CommonStatus commonStatus = null;
-        if (baseStatus.commonStatus != null)
-        {
-            commonStatus = Instantiate(baseStatus.commonStatus);
-        }
-
-        // currentStatus 기초 입력 
-        CurrentStatus = new CharacterStatus { commonStatus = commonStatus };
+        CurrentStatus = new CharacterStatus();
         UpdateStatus((a, b) => b, baseStatus);
-        if(CurrentStatus.commonStatus != null)
+        if (CurrentStatus.commonStatus == null)
         {
-            CurrentStatus = baseStatus;
+            CurrentStatus.commonStatus = baseStatus.commonStatus;
         }
-
         // characterStatus 수정
         foreach (CharacterStatus modifier in statsModifiers.OrderBy(x => x.statusChangeType))
         {
@@ -81,15 +73,23 @@ public class CharacterStatusHandler : MonoBehaviour
         SetCurrentStatus();
         LimitAllStatus();
 
+        Debug.Log("maxHP" + CurrentStatus.maxHealth);
+        Debug.Log("atk" + CurrentStatus.atk);
+        Debug.Log("def" + CurrentStatus.def);
+        Debug.Log("moveSpeed" + CurrentStatus.moveSpeed);
+        Debug.Log("AttackSpeed" + CurrentStatus.attackSpeed);
+        Debug.Log("jumpPower" + CurrentStatus.jumpPower);
+        Debug.Log("jumpcooldown" + CurrentStatus.jumpCooldown);
+
     }
 
-    
+
 
 
     // status값 변화 받기
     private void UpdateStatus(Func<float, float, float> operation, CharacterStatus newModifier)
     {
-        UpdateBaseStatus(operation, CurrentStatus.commonStatus, newModifier.commonStatus);
+        UpdateBaseStatus(operation, newModifier.commonStatus);
 
         if (CurrentStatus.commonStatus == null || newModifier.commonStatus == null) return;
         if (CurrentStatus.commonStatus.GetType() != newModifier.commonStatus.GetType()) return;
@@ -104,23 +104,22 @@ public class CharacterStatusHandler : MonoBehaviour
 
     }
 
-    
 
-    private void UpdateBaseStatus(Func<float, float, float> operation, CommonStatus currentStatus, CommonStatus newStatus)
+
+    private void UpdateBaseStatus(Func<float, float, float> operation, CommonStatus newStatus)
     {
-        if (currentStatus == null || newStatus == null || currentStatus.GetType() != newStatus.GetType())
+        if (newStatus == null)
         {
             return;
         }
-
-        currentStatus.maxHealth = operation(currentStatus.maxHealth, newStatus.maxHealth);
-        currentStatus.hp =  operation(currentStatus.hp, newStatus.hp);
-        currentStatus.atk = operation(currentStatus.atk, newStatus.atk);
-        currentStatus.def = operation(currentStatus.def, newStatus.def);
-        currentStatus.moveSpeed = operation(currentStatus.moveSpeed, newStatus.moveSpeed);
-        currentStatus.attackSpeed = operation(currentStatus.attackSpeed, newStatus.attackSpeed);
-        currentStatus.jumpPower = operation(currentStatus.jumpPower, newStatus.jumpPower);
-        currentStatus.jumpCooldown = operation(currentStatus.jumpCooldown, newStatus.jumpCooldown);
+        CurrentStatus.maxHealth = operation(CurrentStatus.maxHealth, newStatus.maxHealth);
+        CurrentStatus.hp = operation(CurrentStatus.hp, newStatus.hp);
+        CurrentStatus.atk = operation(CurrentStatus.atk, newStatus.atk);
+        CurrentStatus.def = operation(CurrentStatus.def, newStatus.def);
+        CurrentStatus.moveSpeed = operation(CurrentStatus.moveSpeed, newStatus.moveSpeed);
+        CurrentStatus.attackSpeed = operation(CurrentStatus.attackSpeed, newStatus.attackSpeed);
+        CurrentStatus.jumpPower = operation(CurrentStatus.jumpPower, newStatus.jumpPower);
+        CurrentStatus.jumpCooldown = operation(CurrentStatus.jumpCooldown, newStatus.jumpCooldown);
     }
 
     private void EnemyStatus(Func<float, float, float> operation, CharacterStatus newModifier)

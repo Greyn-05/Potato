@@ -43,6 +43,7 @@ public class HealthSystem : MonoBehaviour
     #region ChangeHealthEvent
     public bool ChangeHealth(float change)
     {
+        Debug.Log(CurrentHealth+"º¯°æÀü");
         if (change == 0 || _healthLastChange < healthChangeDelay) return false;
 
 
