@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
 {
     public GameObject status;
     public GameObject gameOverUI;
+    public GameObject gameclearUI;
+    public GameObject endingscene;
     private bool statVisible = false;
 
     private HealthSystem healthSystem;
@@ -55,4 +57,16 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
+
+    public void GameClear()
+    {
+        gameclearUI.SetActive(true);
+    }
+
+    public void clearscean()
+    {
+        FadeManager.Instance.StartFade();
+        endingscene.SetActive(true);
+    }
+
 }
