@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Item
   - Ground
+  - Trap
   layers:
   - Default
   - TransparentFX

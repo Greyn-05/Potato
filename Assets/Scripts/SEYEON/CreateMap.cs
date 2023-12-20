@@ -36,6 +36,8 @@ public class CreateMap : MonoBehaviour
     public GameObject trapPrefabs; // 함정 프리팹
     public int numberOfTraps; // 함정 갯수
 
+    public GameObject goldBox; // 상자
+
     private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // 프리팹 데이터 저장
 
 
@@ -46,11 +48,11 @@ public class CreateMap : MonoBehaviour
 
     private void GenerateMap()
     {
-        int maxPrefabCount = 20;
-        int createdPrefabCount = 0;
+        int maxPrefabCount = 20; // 최대 땅 생성 갯수
+        int createdPrefabCount = 0; // 생성된 프리팹 갯수
         int attemptCount = 0; // 탐색 시도 횟수
 
-        while (createdPrefabCount < maxPrefabCount) // 최대 프리팹 갯수까지
+        while (createdPrefabCount < maxPrefabCount) // 최대 프리팹 갯수까지 반복
         {
             MapPrefab mapPrefabData = mapPrefabs[Random.Range(0, mapPrefabs.Length)]; // 프리팹 배열에서 프리팹 랜덤 선택
             float prefabWidth = mapPrefabData.width; // 입력한 길이 가져옴
@@ -100,7 +102,8 @@ public class CreateMap : MonoBehaviour
             }
         }
 
-        PlaceTraps();
+        PlaceTraps(); // 함정 설치
+        PlaceGoldBox(); // 박스 설치
     }
 
     private void PlaceTraps()
@@ -130,16 +133,50 @@ public class CreateMap : MonoBehaviour
 
             GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
 
-            // BoxCollider2D trapCollider = trapInstance.GetComponent<BoxCollider2D>();
-
-            //if (trapCollider != null)
-            //{
-            //    float trapOffsetY = trapCollider.size.y * trapInstance.transform.localScale.y / 2;
-
             trapInstance.transform.position = groundPrefab.position;
-            //}
 
             groundPrefabs.RemoveAt(randomIndex); // 사용한 땅 프리팹은 리스트에서 제거
         }
+    }
+
+    private void PlaceGoldBox()
+    {
+        List<PrefabData> groundPrefabs = new List<PrefabData>();
+
+        foreach (var prefabData in createdPrefabsData)
+        {
+            if (prefabData.isGround && !IsTrapOn(prefabData.position))
+            {
+                groundPrefabs.Add(prefabData);
+            }
+        }
+
+        if (groundPrefabs.Count > 0)
+        {
+            int randomIndex = Random.Range(0, groundPrefabs.Count);
+            PrefabData selectedGround = groundPrefabs[randomIndex];
+           
+            float boxX = selectedGround.position.x;
+            float boxY = selectedGround.position.y - 0.5f;
+            
+            Instantiate (goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("박스 자리 없음");
+        }
+    }
+
+    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f) // 오차범위 0.1f 안에 함정 있는지 검사
+    {
+        foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
+        {
+            if (Vector2.Distance(trap.transform.position, position) <= tolerance)
+            {
+                return true; // 함정 O
+            }
+        }
+
+        return false; // 함정 X
     }
 }
