@@ -6,53 +6,57 @@ using UnityEngine;
 
 public class EnemyDeath : MonoBehaviour
 {
-    public EnemyDataSO _enemyHealth; // ÀûÀÇ Ã¼·Â
-    public GameObject HPPotionItemPrefab; // HPPotionItem ÇÁ¸®ÆÕ¿¡ ´ëÇÑ °ø°³ ÂüÁ¶
-    public bool choiceDropHPPotion; // HPPotionÀ» ÇØ´ç Enemy¿¡°Ô Drop ½ÃÅ³°ÇÁö Ã¼Å©
+    public EnemyDataSO _enemyHealth; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    public EnemySpawn enemySpawn;
+    public UIController uIController;
+    public GameObject HPPotionItemPrefab; // HPPotionItem ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public bool choiceDropHPPotion; // HPPotionï¿½ï¿½ ï¿½Ø´ï¿½ Enemyï¿½ï¿½ï¿½ï¿½ Drop ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
 
     
 
     private void Awake()
     {
-        _enemyHealth.hp = _enemyHealth.maxHealth; // ÃÊ±â Ã¼·Â ¼³Á¤
+        _enemyHealth.hp = _enemyHealth.maxHealth; // ï¿½Ê±ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void TakeDamage(float damage)
     {
-        _enemyHealth.hp -= damage; // µ¥¹ÌÁö¸¸Å­ Ã¼·Â °¨¼Ò
+        _enemyHealth.hp -= damage; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Debug.Log(_enemyHealth.hp);
         if (_enemyHealth.hp <= 0f)
         {
-            Die(); // Ã¼·ÂÀÌ 0 ÀÌÇÏÀÏ °æ¿ì »ç¸Á Ã³¸®
+            Die(); // Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         }
     }
 
     private void Die()
     {
-        // °ÔÀÓ ¿ÀºêÁ§Æ® ÆÄ±«
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä±ï¿½
         Destroy(gameObject);
-
         GameManager.Instance.OnEnemyDead();
-
         if (choiceDropHPPotion == true)
         {
-            // 50% È®·ü·Î Ã¼Å©
+            // 50% È®ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
             if (Random.value < 1f)
             {
-                // ÇöÀç °ÔÀÓ ¿ÀºêÁ§Æ® À§Ä¡¿¡¼­ YÃàÀ¸·Î 1 ´ÜÀ§ À§¿¡ HPPotionItem ÇÁ¸®ÆÕ ÀÎ½ºÅÏ½ºÈ­
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ HPPotionItem ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½È­
                 GameObject instantiatedItem = Instantiate(HPPotionItemPrefab, transform.position + Vector3.up * 1f, transform.rotation);
 
-                // ÀÎ½ºÅÏ½ºÈ­µÈ ¾ÆÀÌÅÛ¿¡ BoxCollider2D ÄÄÆ÷³ÍÆ®ÀÇ Is Trigger ¼³Á¤À» false·Î º¯°æ
+                // ï¿½Î½ï¿½ï¿½Ï½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ BoxCollider2D ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Is Trigger ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 BoxCollider2D collider = instantiatedItem.GetComponent<BoxCollider2D>();
                 if (collider != null)
                 {
                     collider.isTrigger = false;
                 }
 
-                // ÇÊ¿äÇÑ °æ¿ì Rigidbody2D ÄÄÆ÷³ÍÆ® Ãß°¡ ¹× ¼³Á¤
+                // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Rigidbody2D ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ß°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Rigidbody2D rb = instantiatedItem.AddComponent<Rigidbody2D>();
-                // ¿¹: rb.gravityScale = 1;
+                // ï¿½ï¿½: rb.gravityScale = 1;
             }
+        }
+        if (enemySpawn.CurrentScenario == 4)
+        {
+            uIController.GameClear();
         }
     }
 }

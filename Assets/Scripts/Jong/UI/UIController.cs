@@ -53,12 +53,14 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.stageNumber = 1;
     }
 
     public void ExitMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("StartScene");
+        GameManager.Instance.stageNumber = 1;
     }
 
     public void GameClear()

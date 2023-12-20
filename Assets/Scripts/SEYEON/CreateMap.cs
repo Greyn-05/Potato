@@ -44,12 +44,15 @@ public class CreateMap : MonoBehaviour
 
     public LayerMask layerMaskForPlacementCheck; // 레이어 지정
 
-
     private void Start()
     {
         PlaceMap();
+        setMapdata();
     }
-
+    public void setMapdata()
+    {
+        GameManager.Instance.createMapScript = gameObject.GetComponent<CreateMap>();
+    }
     public void PlaceMap()
     {
         int maxPrefabCount = 25; // 최대 생성 갯수
