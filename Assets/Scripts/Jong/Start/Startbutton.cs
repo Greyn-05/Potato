@@ -7,6 +7,6 @@ public class Startbutton : MonoBehaviour
 {
     public void Startbt()
     {
-        SceneManager.LoadScene("SelectScene");
+        SceneManager.LoadScene("Select");
     }
 }
