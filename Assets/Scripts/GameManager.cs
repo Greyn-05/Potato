@@ -8,9 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public GameObject knightPrefab; // 임시조치
     public GameObject PlayerCameraPrefab;
-    public GameObject UIPrefab;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
+
+    private CreateMap createMapScript;
+    public int currentStage = 1;
+    private int[] stageCorrectPortal = { 2, 3, 1 }; // 각 스테이지 정답 포탈 2(red)-> 3(yellow)-> 1(blue)
 
     private void Awake()
     {
@@ -30,7 +33,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
         InstantiateKnight();
         InstantPlayerCameraPrefa();
-        InstantiateUI();
     }
 
 
@@ -46,8 +48,33 @@ public class GameManager : MonoBehaviour
         Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
-    void InstantiateUI()
+    public void EnterPortal(int portalIndex)
     {
-        Instantiate(UIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        OnPortalEnter(portalIndex);
+    }
+
+    private void OnPortalEnter(int portalIndex)
+    {
+        if (portalIndex == stageCorrectPortal[currentStage - 1])
+        {
+            GoToNextStage();
+        }
+        else
+        {
+            RestartCurrentStage();
+        }
+    }
+
+    private void GoToNextStage()
+    {
+        currentStage++;
+        createMapScript.PlaceMap();
+        createMapScript.PlacePortals();
+    }
+
+    private void RestartCurrentStage()
+    {
+        createMapScript.PlaceMap();
+        createMapScript.PlacePortals();
     }
 }
