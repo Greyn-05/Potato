@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject knightPrefab;
+    //public GameObject PlayerCameraPrefab;
     // GameManager의 단일 인스턴스를 저장하는 정적 속성
     public static GameManager Instance { get; private set; }
 
@@ -23,10 +25,21 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        SceneManager.LoadScene("Seyeon");
+        SceneManager.LoadScene("Seyeon", LoadSceneMode.Additive);
+        InstantiateKnight();
+        InstantPlayerCameraPrefa();
     }
-    void Update()
+
+
+    void InstantiateKnight()
     {
         
+        Instantiate(knightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        
+    }
+
+    void InstantPlayerCameraPrefa()
+    {
+        //Instantiate(PlayerCameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }
