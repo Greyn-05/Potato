@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator _animator;
+    public GameObject[] itemPrefabs;
+    private bool isOpen = false;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player") && !isOpen)
+        {
+            OpenBox();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OpenBox()
     {
-        
+        isOpen = true;
+        _animator.SetBool("IsOpened", true);
+        InstantiateRandomItem();
+    }
+
+    private void InstantiateRandomItem()
+    {
+        int randomIndex = Random.Range(0, itemPrefabs.Length);
+        Instantiate(itemPrefabs[randomIndex], transform.position, Quaternion.identity);
     }
 }
