@@ -19,6 +19,7 @@ public struct PrefabData
     public Vector2 position; // 프리팹 위치
     public float width; // 가로
     public float height; // 세로
+    public bool isGround; // 땅인지
 }
 
 public class CreateMap : MonoBehaviour
@@ -32,6 +33,9 @@ public class CreateMap : MonoBehaviour
     public float minDistanceBetweenPrefabs; // 프리팹끼리 최소 거리
     public float minHeightDifference; // 프리팹끼리 최소 높이 차이
 
+    public GameObject trapPrefabs; // 함정 프리팹
+    public int numberOfTraps; // 함정 갯수
+
     private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // 프리팹 데이터 저장
 
 
@@ -40,7 +44,7 @@ public class CreateMap : MonoBehaviour
         GenerateMap();
     }
 
-    void GenerateMap()
+    private void GenerateMap()
     {
         int maxPrefabCount = 20;
         int createdPrefabCount = 0;
@@ -78,7 +82,6 @@ public class CreateMap : MonoBehaviour
                 attemptCount++;
                 if (attemptCount > 100)
                 {
-                    Debug.LogError("IGNORE");
                     break;
                 }
             }
@@ -87,7 +90,7 @@ public class CreateMap : MonoBehaviour
             if (positionIsValid)
             {
                 Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // 프리팹 생성
-                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight }); // 생성된 프리팹 위치, 길이 저장
+                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight, isGround = true }); // 생성된 프리팹 위치, 길이, 태그 저장
                 createdPrefabCount++; // 프리팹 수 ++
                 attemptCount = 0; // 횟수 초기화
             }
@@ -95,6 +98,39 @@ public class CreateMap : MonoBehaviour
             {
                 break;
             }
+        }
+
+        PlaceTraps();
+    }
+
+    private void PlaceTraps()
+    {
+        List<PrefabData> groundPrefabs = new List<PrefabData>(); // 땅 태그 프리팹을 리스트로
+
+        foreach (var prefabData in createdPrefabsData)
+        {
+            if (prefabData.isGround)
+            {
+                groundPrefabs.Add(prefabData);
+            }
+        }
+
+        for (int i = 0; i < numberOfTraps; i++)
+        {
+            if (groundPrefabs.Count == 0)
+            {
+                break; // 땅 태그가 0이면 break
+            }
+
+            int randomIndex = Random.Range(0, groundPrefabs.Count);
+            PrefabData groundPrefab = groundPrefabs[randomIndex];
+
+            float trapX = groundPrefab.position.x;
+            float trapY = groundPrefab.position.y + groundPrefab.height * 0.5f;
+
+            Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
+
+            groundPrefabs.RemoveAt(randomIndex);
         }
     }
 }
