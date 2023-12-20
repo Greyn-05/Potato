@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { HP, Gold, Atk, Def, AS }
+    public enum InfoType { HP, HPT, Atk, AS }
     public InfoType type;
 
     Text mytext;
@@ -29,6 +29,11 @@ public class HUD : MonoBehaviour
                 float maxhp = healthSystemInstance.MaxHealth;
                 float curhp = healthSystemInstance.CurrentHealth;
                 myslider.value = curhp / maxhp;
+                break;
+            case InfoType.HPT:
+                float maxhpt = healthSystemInstance.MaxHealth;
+                float curhpt = healthSystemInstance.CurrentHealth;
+                mytext.text = $"{curhpt}/{maxhpt}";
                 break;
             case InfoType.Atk:
                 float atk = commonStatusInstance.atk;
