@@ -9734,9 +9734,10 @@ GameObject:
   - component: {fileID: 2351506204501967341}
   - component: {fileID: 4523752998031931352}
   - component: {fileID: 8014475038000807525}
+  - component: {fileID: -1125518892017703300}
   m_Layer: 0
-  m_Name: Portal blue
-  m_TagString: Untagged
+  m_Name: Portal_Blue(1)
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14612,6 +14613,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-1125518892017703300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430358479322250631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae2e266015113448adb1b9148c24982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5823473317334162356
 GameObject:
   m_ObjectHideFlags: 0

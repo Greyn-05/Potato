@@ -8,6 +8,8 @@ TagManager:
   - Item
   - Ground
   - Trap
+  - Box
+  - Portal
   layers:
   - Default
   - TransparentFX

@@ -38,17 +38,19 @@ public class CreateMap : MonoBehaviour
 
     public GameObject goldBox; // 금박스
 
+    public GameObject[] portalPrefabs; // 포탈 프리팹
+
     private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // 프리팹 데이터 저장 배열
 
 
     private void Start()
     {
-        GenerateMap();
+        PlaceMap();
     }
 
-    private void GenerateMap()
+    public void PlaceMap()
     {
-        int maxPrefabCount = 20; // 최대 생성 갯수
+        int maxPrefabCount = 25; // 최대 생성 갯수
         int createdPrefabCount = 0; // 생성된 프리팹 갯수
         int attemptCount = 0; // 시도횟수
 
@@ -103,7 +105,8 @@ public class CreateMap : MonoBehaviour
         }
 
         PlaceTraps();
-        PlaceGoldBox(); 
+        PlaceGoldBoxes();
+        PlacePortals();
     }
 
     private void PlaceTraps()
@@ -139,7 +142,7 @@ public class CreateMap : MonoBehaviour
         }
     }
 
-    private void PlaceGoldBox()
+    private void PlaceGoldBoxes()
     {
         List<PrefabData> groundPrefabs = new List<PrefabData>();
 
@@ -168,6 +171,64 @@ public class CreateMap : MonoBehaviour
         foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
         {
             if (Vector2.Distance(trap.transform.position, position) <= tolerance)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void PlacePortals()
+    {
+        List<PrefabData> groundPrefabs = new List<PrefabData>();
+
+        foreach (var prefabData in createdPrefabsData)
+        {
+            if (prefabData.isGround && !IsTrapAndBox(prefabData.position))
+            {
+                groundPrefabs.Add(prefabData);
+            }
+        }
+
+        for (int i = 0; i < portalPrefabs.Length; i++)
+        {
+            if (groundPrefabs.Count == 0)
+            {
+                break;
+            }
+
+            int randomIndex = Random.Range(0, groundPrefabs.Count);
+            PrefabData groundPrefab = groundPrefabs[randomIndex];
+
+            float portalX = groundPrefab.position.x;
+            float portalY = groundPrefab.position.y + (groundPrefab.height / 2);
+
+            GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
+            Portal portalScript = portalInstance.GetComponent<Portal>();
+            if (portalScript != null)
+            {
+                portalScript.portalIndex = i + 1; // 포탈 인덱스 설정
+                portalScript.CheckPortalActive(); // 포탈 활성화 여부 체크
+            }
+
+            groundPrefabs.RemoveAt(randomIndex);
+        }
+    }
+
+    private bool IsTrapAndBox(Vector2 position, float tolerance = 0.1f)
+    {
+        foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
+        {
+            if (Vector2.Distance(trap.transform.position, position) <= tolerance)
+            {
+                return true;
+            }
+        }
+
+        foreach (GameObject box in GameObject.FindGameObjectsWithTag("Box"))
+        {
+            if (Vector2.Distance(box.transform.position, position) <= tolerance)
             {
                 return true;
             }
