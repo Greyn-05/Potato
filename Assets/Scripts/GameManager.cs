@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         Instantiate(UIprefab, new Vector3(0, 0,0 ), Quaternion.identity);
     }
 
+
     public void EnterPortal(int portalIndex)
     {
         OnPortalEnter(portalIndex);
