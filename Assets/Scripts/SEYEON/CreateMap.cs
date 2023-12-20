@@ -185,27 +185,31 @@ public class CreateMap : MonoBehaviour
 
         for (int i = 0; i < portalPrefabs.Length; i++)
         {
-            if (groundPrefabs.Count == 0)
+            bool placed = false;
+            int attempts = 0;
+
+            while (!placed && attempts < 500) // 최대 500번 시도
             {
-                break;
+                int randomIndex = Random.Range(0, groundPrefabs.Count);
+                PrefabData groundPrefab = groundPrefabs[randomIndex];
+
+                float portalX = groundPrefab.position.x;
+                float portalY = groundPrefab.position.y + (groundPrefab.height / 2);
+
+                if (!IsTrapAndBox(new Vector2(portalX, portalY), 0.1f)) // 0.1f는 허용오차
+                {
+                    GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
+                    Portal portalScript = portalInstance.GetComponent<Portal>();
+                    if (portalScript != null)
+                    {
+                        portalScript.portalIndex = i + 1;
+                        portalScript.CheckPortalActive();
+                    }
+
+                    placed = true;
+                }
+                attempts++;
             }
-
-            int randomIndex = Random.Range(0, groundPrefabs.Count);
-            PrefabData groundPrefab = groundPrefabs[randomIndex];
-
-            float portalX = groundPrefab.position.x;
-            float portalY = groundPrefab.position.y + (groundPrefab.height / 2);
-
-            GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
-            Portal portalScript = portalInstance.GetComponent<Portal>();
-
-            if (portalScript != null)
-            {
-                portalScript.portalIndex = i + 1;
-                portalScript.CheckPortalActive();
-            }
-
-            groundPrefabs.RemoveAt(randomIndex);
         }
     }
 
