@@ -8,37 +8,37 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class MapPrefab
 {
-    public GameObject prefab; // �� ������
-    public float width; // ������ ����
-    public float height; // ������ ����
+    public GameObject prefab; // 맵 프리팹
+    public float width; // 가로 길이
+    public float height; // 세로 길이
 }
 
 [Serializable]
 public struct PrefabData
 {
-    public Vector2 position; // ������ ��ġ
-    public float width; // ����
-    public float height; // ����
-    public bool isGround; // ������
+    public Vector2 position; // 프리팹 위치
+    public float width; // 가로
+    public float height; // 세로
+    public bool isGround; // 땅인지
 }
 
 public class CreateMap : MonoBehaviour
 {
-    public MapPrefab[] mapPrefabs; // ������ �迭
-    public float maxJumpWidth; // �ִ� ���� ����
-    public float maxJumpHeight; // �ִ� ���� ����
-    public Vector2 startPosition; // ���� ��ġ
-    public float mapLength; // �� ����
-    public float mapHeight; // �� ����
-    public float minDistanceBetweenPrefabs; // �����ճ��� �ּ� �Ÿ�
-    public float minHeightDifference; // �����ճ��� �ּ� ���� ����
+    public MapPrefab[] mapPrefabs; // 프리팹 배열
+    public float maxJumpWidth; // 점프 최대 길이
+    public float maxJumpHeight; // 점프 최대 높이
+    public Vector2 startPosition; // 맵 생성 시작 위치
+    public float mapLength; // 맵 가로
+    public float mapHeight; // 맵 세로
+    public float minDistanceBetweenPrefabs; // 프리팹 사이 최소 거리
+    public float minHeightDifference; // 프리팹 사이 최소 높이
 
-    public GameObject trapPrefabs; // ���� ������
-    public int numberOfTraps; // ���� ����
+    public GameObject trapPrefabs; // 함정
+    public int numberOfTraps; // 함정 갯수
 
-    public GameObject goldBox; // ����
+    public GameObject goldBox; // 금박스
 
-    private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // ������ ������ ����
+    private List<PrefabData> createdPrefabsData = new List<PrefabData>(); // 프리팹 데이터 저장 배열
 
 
     private void Start()
@@ -48,35 +48,35 @@ public class CreateMap : MonoBehaviour
 
     private void GenerateMap()
     {
-        int maxPrefabCount = 20; // �ִ� �� ���� ����
-        int createdPrefabCount = 0; // ������ ������ ����
-        int attemptCount = 0; // Ž�� �õ� Ƚ��
+        int maxPrefabCount = 20; // 최대 생성 갯수
+        int createdPrefabCount = 0; // 생성된 프리팹 갯수
+        int attemptCount = 0; // 시도횟수
 
-        while (createdPrefabCount < maxPrefabCount) // �ִ� ������ �������� �ݺ�
+        while (createdPrefabCount < maxPrefabCount) // 최대 갯수 생성까지 반복
         {
-            MapPrefab mapPrefabData = mapPrefabs[Random.Range(0, mapPrefabs.Length)]; // ������ �迭���� ������ ���� ����
-            float prefabWidth = mapPrefabData.width; // �Է��� ���� ������
-            float prefabHeight = mapPrefabData.height; // �Է��� ���� ������
+            MapPrefab mapPrefabData = mapPrefabs[Random.Range(0, mapPrefabs.Length)]; // 랜덤 프리팹 선택
+            float prefabWidth = mapPrefabData.width; // 가로 입력값
+            float prefabHeight = mapPrefabData.height; // 세로 입력값
 
-            Vector2 nextPosition; // ���� ������ ���� ��ġ
-            bool positionIsValid; // ��ġ ��ȿ����
+            Vector2 nextPosition; // 다음 생성 위치
+            bool positionIsValid; // 위치 유효?
 
             do
             {
                 positionIsValid = true;
-                float nextXPosition = startPosition.x + Random.Range(0, mapLength - prefabWidth); // x�� �� ���� �ȿ��� ����
-                float nextYPosition = startPosition.y + Random.Range(0, mapHeight - prefabHeight); // y�� �� ���� �ȿ��� ����
+                float nextXPosition = startPosition.x + Random.Range(0, mapLength - prefabWidth); // 랜덤 x
+                float nextYPosition = startPosition.y + Random.Range(0, mapHeight - prefabHeight); // 랜덤 y
 
                 nextPosition = new Vector2(nextXPosition, nextYPosition);
 
-                foreach (var prefabData in createdPrefabsData) // ������ �����յ� ��ġ�� ��ġ���� �ƴ��� 
+                foreach (var prefabData in createdPrefabsData)
                 {
                     float horizontalDistance = Mathf.Abs(prefabData.position.x - nextPosition.x) - (prefabData.width / 2 + prefabWidth / 2);
                     float verticalDistance = Mathf.Abs(prefabData.position.y - nextPosition.y) - (prefabData.height / 2 + prefabHeight / 2);
 
                     if (horizontalDistance < minDistanceBetweenPrefabs && verticalDistance < minHeightDifference)
                     {
-                        positionIsValid = false; // ��ġ�� false
+                        positionIsValid = false;
                         break;
                     }
                 }
@@ -91,10 +91,10 @@ public class CreateMap : MonoBehaviour
 
             if (positionIsValid)
             {
-                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity); // ������ ����
-                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight, isGround = true }); // ������ ������ ��ġ, ����, �±� ����
-                createdPrefabCount++; // ������ �� ++
-                attemptCount = 0; // Ƚ�� �ʱ�ȭ
+                Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity);
+                createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight, isGround = true });
+                createdPrefabCount++; 
+                attemptCount = 0; 
             }
             else
             {
@@ -102,13 +102,13 @@ public class CreateMap : MonoBehaviour
             }
         }
 
-        PlaceTraps(); // ���� ��ġ
-        PlaceGoldBox(); // �ڽ� ��ġ
+        PlaceTraps();
+        PlaceGoldBox(); 
     }
 
     private void PlaceTraps()
     {
-        List<PrefabData> groundPrefabs = new List<PrefabData>(); // �� �±� �������� ����Ʈ��
+        List<PrefabData> groundPrefabs = new List<PrefabData>();
 
         foreach (var prefabData in createdPrefabsData)
         {
@@ -122,20 +122,20 @@ public class CreateMap : MonoBehaviour
         {
             if (groundPrefabs.Count == 0)
             {
-                break; // �� �±װ� 0�̸� break
+                break;
             }
 
             int randomIndex = Random.Range(0, groundPrefabs.Count);
             PrefabData groundPrefab = groundPrefabs[randomIndex];
 
             float trapX = groundPrefab.position.x;
-            float trapY = groundPrefab.position.y + (groundPrefab.height / 2); // �� �������� ���� ������ ������ ����
+            float trapY = groundPrefab.position.y + (groundPrefab.height / 2); 
 
             GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
 
             trapInstance.transform.position = groundPrefab.position;
 
-            groundPrefabs.RemoveAt(randomIndex); // ����� �� �������� ����Ʈ���� ����
+            groundPrefabs.RemoveAt(randomIndex); 
         }
     }
 
@@ -161,22 +161,18 @@ public class CreateMap : MonoBehaviour
             
             Instantiate (goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
         }
-        else
-        {
-            Debug.Log("�ڽ� �ڸ� ����");
-        }
     }
 
-    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f) // �������� 0.1f �ȿ� ���� �ִ��� �˻�
+    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f) 
     {
         foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
         {
             if (Vector2.Distance(trap.transform.position, position) <= tolerance)
             {
-                return true; // ���� O
+                return true;
             }
         }
 
-        return false; // ���� X
+        return false;
     }
 }
