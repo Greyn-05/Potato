@@ -268,6 +268,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced349a60badf6f45baee02f9918c420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status:
+    statusChangeType: 0
+    maxHealth: 0
+    hp: 0
+    atk: 0
+    def: 0
+    moveSpeed: 0
+    attackSpeed: 0
+    jumpPower: 0
+    jumpCooldown: 0
+    commonStatus: {fileID: 0}
+  potionTime: 0
+  time: 0
 --- !u!1 &1000011164445256
 GameObject:
   m_ObjectHideFlags: 0
