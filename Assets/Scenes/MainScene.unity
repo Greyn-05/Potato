@@ -281,6 +281,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knightPrefab: {fileID: 1000010755293042, guid: a8e1043c85ffaee4facfa0c8fa0ce190, type: 3}
   PlayerCameraPrefab: {fileID: 3162630397164451101, guid: 39e8e766a82d7844885d4763c9541aed, type: 3}
+  UIprefab: {fileID: 8897140288538807387, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
+  currentStage: 1
 --- !u!4 &536024941
 Transform:
   m_ObjectHideFlags: 0

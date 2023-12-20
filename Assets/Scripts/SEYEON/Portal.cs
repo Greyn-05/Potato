@@ -30,5 +30,6 @@ public class Portal : MonoBehaviour
     private bool CheckAllMonsterDead()
     {
         // 몬스터 전부 잡았는지 확인
+        return false;
     }
 }
