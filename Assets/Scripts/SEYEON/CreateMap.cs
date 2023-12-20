@@ -181,15 +181,7 @@ public class CreateMap : MonoBehaviour
 
     public void PlacePortals()
     {
-        List<PrefabData> groundPrefabs = new List<PrefabData>();
-
-        foreach (var prefabData in createdPrefabsData)
-        {
-            if (prefabData.isGround && !IsTrapAndBox(prefabData.position))
-            {
-                groundPrefabs.Add(prefabData);
-            }
-        }
+        List<PrefabData> groundPrefabs = new List<PrefabData>(createdPrefabsData);
 
         for (int i = 0; i < portalPrefabs.Length; i++)
         {
@@ -206,10 +198,11 @@ public class CreateMap : MonoBehaviour
 
             GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
             Portal portalScript = portalInstance.GetComponent<Portal>();
+
             if (portalScript != null)
             {
-                portalScript.portalIndex = i + 1; // 포탈 인덱스 설정
-                portalScript.CheckPortalActive(); // 포탈 활성화 여부 체크
+                portalScript.portalIndex = i + 1;
+                portalScript.CheckPortalActive();
             }
 
             groundPrefabs.RemoveAt(randomIndex);
