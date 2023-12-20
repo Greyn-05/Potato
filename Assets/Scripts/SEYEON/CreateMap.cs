@@ -97,8 +97,8 @@ public class CreateMap : MonoBehaviour
             {
                 Instantiate(mapPrefabData.prefab, new Vector3(nextPosition.x, nextPosition.y, 0), Quaternion.identity);
                 createdPrefabsData.Add(new PrefabData { position = nextPosition, width = prefabWidth, height = prefabHeight, isGround = true });
-                createdPrefabCount++; 
-                attemptCount = 0; 
+                createdPrefabCount++;
+                attemptCount = 0;
             }
             else
             {
@@ -134,12 +134,12 @@ public class CreateMap : MonoBehaviour
             PrefabData groundPrefab = groundPrefabs[randomIndex];
 
             float trapX = groundPrefab.position.x;
-            float trapY = groundPrefab.position.y + (groundPrefab.height / 2); 
+            float trapY = groundPrefab.position.y + (groundPrefab.height / 2) - 0.7f;
 
             GameObject trapInstance = Instantiate(trapPrefabs, new Vector3(trapX, trapY, 0), Quaternion.identity);
             trapInstance.layer = LayerMask.NameToLayer("Trap");
 
-            groundPrefabs.RemoveAt(randomIndex); 
+            groundPrefabs.RemoveAt(randomIndex);
         }
     }
 
@@ -159,16 +159,16 @@ public class CreateMap : MonoBehaviour
         {
             int randomIndex = Random.Range(0, groundPrefabs.Count);
             PrefabData selectedGround = groundPrefabs[randomIndex];
-           
+
             float boxX = selectedGround.position.x;
-            float boxY = selectedGround.position.y - 0.5f;
-            
+            float boxY = selectedGround.position.y - 0.5f + 0.2f;
+
             GameObject boxInstance = Instantiate(goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
             boxInstance.layer = LayerMask.NameToLayer("Box");
         }
     }
 
-    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f) 
+    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f)
     {
         foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
         {
@@ -194,11 +194,10 @@ public class CreateMap : MonoBehaviour
                 PrefabData groundPrefab = createdPrefabsData[randomIndex];
 
                 float portalX = groundPrefab.position.x;
-                float portalY = groundPrefab.position.y + (groundPrefab.height / 2);
+                float portalY = groundPrefab.position.y + (groundPrefab.height / 2) + 0.4f;
+                Vector2 portalPosition = new Vector2(portalX, portalY);
 
-                Collider2D collider = Physics2D.OverlapCircle(new Vector2(portalX, portalY), 0.5f, layerMaskForPlacementCheck);
-
-                if (collider == null)
+                if (!IsTrapAndBox(portalPosition, 0.3f))
                 {
                     GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
                     Portal portalScript = portalInstance.GetComponent<Portal>();
@@ -210,11 +209,7 @@ public class CreateMap : MonoBehaviour
                     }
 
                     placed = true;
-                }
-
-                if (placed)
-                {
-                    break;
+                    createdPrefabsData.Add(new PrefabData { position = portalPosition, width = 1, height = 1, isGround = false });
                 }
 
                 attempts++;
@@ -222,24 +217,15 @@ public class CreateMap : MonoBehaviour
         }
     }
 
-    private bool IsTrapAndBox(Vector2 position, float tolerance = 0.1f)
+    private bool IsTrapAndBox(Vector2 position, float tolerance)
     {
-        foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
+        foreach (PrefabData prefabData in createdPrefabsData)
         {
-            if (Vector2.Distance(trap.transform.position, position) <= tolerance)
+            if (Vector2.Distance(prefabData.position, position) <= tolerance)
             {
                 return true;
             }
         }
-
-        foreach (GameObject box in GameObject.FindGameObjectsWithTag("Box"))
-        {
-            if (Vector2.Distance(box.transform.position, position) <= tolerance)
-            {
-                return true;
-            }
-        }
-
         return false;
     }
 }

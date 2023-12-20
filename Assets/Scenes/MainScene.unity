@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536024941}
   - component: {fileID: 536024940}
+  - component: {fileID: 536024942}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -284,7 +285,8 @@ MonoBehaviour:
   UIprefab: {fileID: 8897140288538807387, guid: 5fd91425bf67f634785a5820d962aef5, type: 3}
   inventoryUIPrefab: {fileID: 9215254087197607050, guid: e46a4fbda4da75e47a0d4f5fcb266f74, type: 3}
   CameraWall: {fileID: 1251233552615435054, guid: 4a6216e95b792d54da40965844fac271, type: 3}
-  potalCount: 0
+  enemySpawn: {fileID: 536024942}
+  enemyDeathCount: 0
   currentStage: 1
 --- !u!4 &536024941
 Transform:
@@ -301,6 +303,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &536024942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536024939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb20e0f661b7abc4186bde5b7bcc1b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 3171483926963243647, guid: 579f1ddab810a25418b180b6a13e388b, type: 3}
+  - {fileID: 4257422641565858584, guid: f4a032b5d6fd07740913b99389b565ed, type: 3}
+  - {fileID: 4286921269205742036, guid: d1017599b656a27409b59197d065f3ae, type: 3}
+  - {fileID: 8422276864327897534, guid: 5d1ab9b0228d05a40832b62ab4035c82, type: 3}
 --- !u!1 &1148358955
 GameObject:
   m_ObjectHideFlags: 0
