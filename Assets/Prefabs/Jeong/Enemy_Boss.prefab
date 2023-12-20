@@ -460,7 +460,7 @@ Transform:
   - {fileID: 8422276862820669849}
   - {fileID: 8422276864114123489}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1950720097101948379
 Animator:
@@ -585,3 +585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHealth: {fileID: 11400000, guid: e3917401a9762534cb3f59a349db906a, type: 2}
+  enemySpawn: {fileID: 0}
+  uIController: {fileID: 0}
+  HPPotionItemPrefab: {fileID: 0}
+  choiceDropHPPotion: 0
+  enemyType: 2

@@ -97,12 +97,13 @@ public class GameManager : MonoBehaviour
         if (portalIndex == stageCorrectPortal[currentStage - 1])
         {
             GoToNextStage();
-            int stageNum = ++stageNumber;
-            TriggerEnemySpawn(stageNum);
+           stageNumber++;
+            TriggerEnemySpawn(stageNumber);
         }
         else
         {
             RestartCurrentStage();
+            TriggerEnemySpawn(stageNumber);
         }
     }
 

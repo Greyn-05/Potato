@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemyPrefabs; // 利 橇府普 硅凯
-    private List<GameObject> spawnedEnemies = new List<GameObject>(); // 积己等 利甸阑 眠利
+    public List<GameObject> spawnedEnemies = new List<GameObject>(); // 积己等 利甸阑 眠利
     private int currentScenario;
     public int CurrentScenario => currentScenario;
     // 利阑 积己窍绰 皋家靛

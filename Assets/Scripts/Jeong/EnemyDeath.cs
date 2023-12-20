@@ -11,7 +11,7 @@ public class EnemyDeath : MonoBehaviour
     public UIController uIController;
     public GameObject HPPotionItemPrefab; // HPPotionItem �����տ� ���� ���� ����
     public bool choiceDropHPPotion; // HPPotion�� �ش� Enemy���� Drop ��ų���� üũ
-
+    public int enemyType = 1; // normalMonster = 1, bossMonster =2;
     
 
     private void Awake()
@@ -31,6 +31,11 @@ public class EnemyDeath : MonoBehaviour
 
     private void Die()
     {
+        if (enemyType == 2)
+        {
+            UIController.Instance.GameClear();
+            //uIController.GameClear();
+        }
         // ���� ������Ʈ �ı�
         Destroy(gameObject);
         GameManager.Instance.OnEnemyDead();
@@ -54,9 +59,9 @@ public class EnemyDeath : MonoBehaviour
                 // ��: rb.gravityScale = 1;
             }
         }
-        if (enemySpawn.CurrentScenario == 4)
+      /*  if (enemySpawn.CurrentScenario == 4)
         {
             uIController.GameClear();
-        }
+        }*/
     }
 }

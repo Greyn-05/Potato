@@ -12,8 +12,15 @@ public class UIController : MonoBehaviour
     public GameObject endingscene;
     private bool statVisible = false;
 
+    public static UIController Instance { get; private set; }
     private HealthSystem healthSystem;
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         healthSystem = FindObjectOfType<HealthSystem>();
@@ -59,7 +66,7 @@ public class UIController : MonoBehaviour
     public void ExitMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("StartScene");
+        RestartScene();
         GameManager.Instance.stageNumber = 1;
     }
 
@@ -72,6 +79,11 @@ public class UIController : MonoBehaviour
     {
         FadeManager.Instance.StartFade();
         endingscene.SetActive(true);
+        Invoke("RestartScene", 8f);
+    }
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 
 }

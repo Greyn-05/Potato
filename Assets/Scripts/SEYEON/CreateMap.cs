@@ -119,6 +119,7 @@ public class CreateMap : MonoBehaviour
             if (prefabData.isGround)
             {
                 groundPrefabs.Add(prefabData);
+                
             }
         }
 
