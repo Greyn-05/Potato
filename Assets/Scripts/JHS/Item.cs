@@ -5,7 +5,7 @@ using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ItemType { HpPotion, Weapon, Armor }
+public enum ItemType { HpPotion, Weapon, Armor, JumpPotion }
 public class Item : MonoBehaviour
 {
     [Header("ItemInformation")]
@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private List<CharacterStatus> statsModifier;
+    [SerializeField]
+    private CharacterStatus itemsStats;
     PlayerItem playeritem;
     CharacterStatusHandler characterStatusHandler;
     HealthSystem playerHealth;
@@ -46,9 +48,7 @@ public class Item : MonoBehaviour
         switch (itemtype)
         {
             case ItemType.HpPotion: // 플레이어의 회복할때
-                playeritem.status = statsModifier[0];
-                playeritem.time = 10f;
-                playeritem.potionTime = true;
+                playerHealth.ChangeHealth(itemPotionRecoveryAmount);
                 break;
             case ItemType.Armor:
                 for (int i = 0; i < Inventory.instance.itemSlotList.Count; i++)
@@ -69,6 +69,11 @@ public class Item : MonoBehaviour
                         break;
                     }
                 }
+                break;
+            case ItemType.JumpPotion:
+                playeritem.status = itemsStats;
+                playeritem.time = 10f;
+                playeritem.potionTime = true;
                 break;
         }
     }
