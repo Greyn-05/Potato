@@ -1,4 +1,4 @@
-using Cinemachine;
+﻿using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,35 +7,33 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject knightPrefab; // �ӽ���ġ
+    public GameObject knightPrefab;
     public GameObject PlayerCameraPrefab;
     public GameObject UIprefab;
     public GameObject inventoryUIPrefab;
     public GameObject CameraWall;
 
-    public int enemyDeathCount = 0; // ���ī��Ʈ
-    private int TotalDeathCount = 5; // 5�̻��̾�� ��Ż Ȱ��ȭ��
+    public int enemyDeathCount = 0; 
+    private int TotalDeathCount = 5;
 
-    // GameManager�� ���� �ν��Ͻ��� �����ϴ� ���� �Ӽ�
     public static GameManager Instance { get; private set; }
 
     private CreateMap createMapScript;
     public int currentStage = 1;
 
-    private int[] stageCorrectPortal = { 2, 3, 1 }; // �� �������� ���� ��Ż 2(red)-> 3(yellow)-> 1(blue)
+    private int[] stageCorrectPortal = { 2, 3, 1 }; // 포탈 순서 2(red)-> 3(yellow)-> 1(blue)
 
     public static event Action EnemyDeathEvent;
 
     private void Awake()
     {
-        // Instance�� null���� Ȯ���Ѵ�. null�̸� ���� ��ü�� Instance�� �����Ѵ�.
         if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(gameObject); // �ٸ� �ν��Ͻ��� �̹� �����ϸ� ���� ������ ��ü�� �ı��Ѵ�.
+            Destroy(gameObject);
         }
 
         EnemyDeathEvent += EnemyDead;
