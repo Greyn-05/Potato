@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     public void SetKnockback(Transform other)
     {
         _knockbackDuration = 0.3f;
-        _knockback = -(other.position - transform.position).normalized * 10f;
+        _knockback = -(other.position - transform.position).normalized * 15f;
     }
     #endregion
 
