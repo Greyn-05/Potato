@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyData_BulletEnemy
   m_EditorClassIdentifier: 
   maxHealth: 50
-  hp: 50
+  hp: -1150
   atk: 2
   def: 0
   moveSpeed: 5

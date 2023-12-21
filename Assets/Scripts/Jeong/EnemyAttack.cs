@@ -7,11 +7,13 @@ public class EnemyAttack : MonoBehaviour
     public float attackRange; // 공격 범위
     private Animator animator; // Animator 컴포넌트
     private float lastAttackTime; // 마지막 공격 시간 기록
+    PlayerMovement playerMovemet;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; // 플레이어 Transform 찾기
         animator = GetComponent<Animator>(); // Animator 컴포넌트 가져오기
+        playerMovemet = player.GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -42,6 +44,7 @@ public class EnemyAttack : MonoBehaviour
             if (playerHealthSystem != null)
             {
                 playerHealthSystem.ChangeHealth(-enemyData.atk);
+                playerMovemet.SetKnockback(gameObject.transform);
             }
         }
     }

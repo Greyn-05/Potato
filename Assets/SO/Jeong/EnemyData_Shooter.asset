@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EnemyData_Shooter
   m_EditorClassIdentifier: 
   maxHealth: 80
-  hp: 0
-  atk: 5
+  hp: -320
+  atk: 0
   def: 0
   moveSpeed: 0.5
-  attackSpeed: 2
+  attackSpeed: 1
   jumpPower: 2
   jumpCooldown: 2
   detectionRange: 10

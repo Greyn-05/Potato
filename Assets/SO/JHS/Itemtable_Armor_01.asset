@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Itemtable_Armor_01
   m_EditorClassIdentifier: 
   maxHealth: 50
-  hp: 0
+  hp: 50
   atk: 0
   def: 0
   moveSpeed: 0

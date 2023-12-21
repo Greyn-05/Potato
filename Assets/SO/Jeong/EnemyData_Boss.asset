@@ -16,8 +16,8 @@ MonoBehaviour:
   hp: 300
   atk: 30
   def: 5
-  moveSpeed: 1
-  attackSpeed: 0.8
+  moveSpeed: 10
+  attackSpeed: 1.5
   jumpPower: 20
   jumpCooldown: 5
   detectionRange: 10

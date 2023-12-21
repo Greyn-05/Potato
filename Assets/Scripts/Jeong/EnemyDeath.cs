@@ -42,7 +42,7 @@ public class EnemyDeath : MonoBehaviour
         if (choiceDropHPPotion == true)
         {
             // 50% Ȯ���� üũ
-            if (Random.value < 1f)
+            if (Random.value < 0.5f)
             {
                 // ���� ���� ������Ʈ ��ġ���� Y������ 1 ���� ���� HPPotionItem ������ �ν��Ͻ�ȭ
                 GameObject instantiatedItem = Instantiate(HPPotionItemPrefab, transform.position + Vector3.up * 1f, transform.rotation);

@@ -558,6 +558,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHealth: {fileID: 11400000, guid: b9f3749c315992c4cb1564db3a8ada57, type: 2}
+  enemySpawn: {fileID: 0}
+  uIController: {fileID: 0}
+  HPPotionItemPrefab: {fileID: 2514902478681206423, guid: f4520921d3d42e44da15ebc0223437ee, type: 3}
+  choiceDropHPPotion: 1
+  enemyType: 1
 --- !u!114 &4890921967721072919
 MonoBehaviour:
   m_ObjectHideFlags: 0
