@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         _controller.OnMoveEvent += SetMoveDirection;
         _controller.OnJumpEvent += Jump;
         _controller.OnLookEvent += FlipPlayer;
-        _healthSystem.OnDamage += SetKnockback;
         lastJumpTime = Time.time - _status.CurrentStatus.jumpCooldown;
     }
 
@@ -63,15 +62,15 @@ public class PlayerMovement : MonoBehaviour
         currentVelocity.x = direction.x * _status.CurrentStatus.moveSpeed;
         if (_knockbackDuration > 0.0f)
         {
-            currentVelocity.x = -_knockback.x * 5f;
+            currentVelocity.x = _knockback.x;
         }
         _rigidbody.velocity = currentVelocity;
     }
 
-    private void SetKnockback()
+    public void SetKnockback(Transform other)
     {
         _knockbackDuration = 0.3f;
-        _knockback = _direction;
+        _knockback = -(other.position - transform.position).normalized * 10f;
     }
     #endregion
 
