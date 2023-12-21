@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   hp: 500
-  atk: 40
+  atk: 150
   def: 5
   moveSpeed: 5
   attackSpeed: 1

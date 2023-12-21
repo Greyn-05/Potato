@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: aaf2415b5e12718418325ae610338bff, type: 2}
-  attackRange: 8
+  attackRange: 3
   bulletPrefab: {fileID: 8352574985760912148, guid: db373c15e04de1c4990ecc05f6cedd1b, type: 3}
   bulletSpawnPoint: {fileID: 4286921269205742035}
 --- !u!114 &141146825912012074
