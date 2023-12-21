@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class MapPrefab
 {
-    public GameObject prefab; // 맵 프리팹
+    public GameObject prefab; // 맵 프리팹0
     public float width; // 가로 길이
     public float height; // 세로 길이
 }
@@ -106,8 +106,6 @@ public class CreateMap : MonoBehaviour
         }
 
         PlaceTraps();
-        PlaceGoldBoxes();
-        PlacePortals();
     }
 
     private void PlaceTraps()
@@ -141,7 +139,19 @@ public class CreateMap : MonoBehaviour
             trapInstance.layer = LayerMask.NameToLayer("Trap");
 
             groundPrefabs.RemoveAt(randomIndex);
+
+            PrefabData temp = new PrefabData()
+            {
+                position = trapInstance.transform.position,
+                height = 0,
+                width = 0,
+                isGround = false
+            };
+
+            createdPrefabsData.Add(temp);
         }
+
+        PlaceGoldBoxes();
     }
 
     private void PlaceGoldBoxes()
@@ -167,10 +177,22 @@ public class CreateMap : MonoBehaviour
             GameObject boxInstance = Instantiate(goldBox, new Vector3(boxX, boxY, 0), Quaternion.identity);
             boxInstance.transform.parent = this.transform;
             boxInstance.layer = LayerMask.NameToLayer("Box");
+
+            PrefabData temp = new PrefabData()
+            {
+                position = boxInstance.transform.position,
+                height = 0,
+                width = 0,
+                isGround = false
+            };
+
+            createdPrefabsData.Add(temp);
         }
+
+        PlacePortals();
     }
 
-    private bool IsTrapOn(Vector2 position, float tolerance = 0.1f)
+    private bool IsTrapOn(Vector2 position, float tolerance = 0.5f)
     {
         foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap"))
         {
@@ -199,7 +221,7 @@ public class CreateMap : MonoBehaviour
                 float portalY = groundPrefab.position.y + (groundPrefab.height / 2) + 0.4f;
                 Vector2 portalPosition = new Vector2(portalX, portalY);
 
-                if (!IsTrapAndBox(portalPosition, 0.3f))
+                if (!IsTrapAndBox(portalPosition, 1.5f))
                 {
                     GameObject portalInstance = Instantiate(portalPrefabs[i], new Vector3(portalX, portalY, 0), Quaternion.identity);
                     portalInstance.transform.parent = this.transform;
@@ -224,6 +246,12 @@ public class CreateMap : MonoBehaviour
     {
         foreach (PrefabData prefabData in createdPrefabsData)
         {
+
+            if (prefabData.isGround)
+            {
+                continue;
+            }
+
             if (Vector2.Distance(prefabData.position, position) <= tolerance)
             {
                 return true;
