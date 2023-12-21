@@ -27,7 +27,7 @@ public class PlayerItem : MonoBehaviour
        StartCoroutine(WaitForIt(time));
     }
 
-    IEnumerator WaitForIt(float time)
+    IEnumerator WaitForIt(float time)   
     {
         yield return new WaitForSeconds(time);
         OnPotionEnd?.Invoke(status);

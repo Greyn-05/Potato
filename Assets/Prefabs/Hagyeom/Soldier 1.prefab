@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013415426654}
   - component: {fileID: 212000012017310748}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010699540364}
   - component: {fileID: 212000012818382520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,9 +188,9 @@ GameObject:
   - component: {fileID: 7459292971893467681}
   - component: {fileID: 4618847707053748501}
   - component: {fileID: 4474123603778287409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Soldier 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -447,7 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011635417628}
   - component: {fileID: 212000012228959506}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011435472148}
   - component: {fileID: 212000013542079236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012747005852}
   - component: {fileID: 212000010206430610}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010002636958}
   - component: {fileID: 212000010385311698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011425412340}
   - component: {fileID: 212000013500962334}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2740223231076130777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

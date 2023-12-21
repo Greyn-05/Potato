@@ -12,6 +12,7 @@ TagManager:
   - Portal
   - Wall
   - testplayer
+  - CameraWall
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - CameraWall
+  - Player
   - 
   - 
   - Item

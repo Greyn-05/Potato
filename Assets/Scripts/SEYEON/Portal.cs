@@ -6,30 +6,20 @@ public class Portal : MonoBehaviour
 {
     public int portalIndex;
     private bool isActive;
-
-    private void Start()
-    {
-        CheckPortalActive();
-    }
-
-    public void CheckPortalActive()
-    {
-        isActive = CheckAllMonsterDead();
-    }
-
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"{other.tag}");
         if (other.CompareTag("Player") && isActive)
         {
+            Debug.Log("very good");
             GameManager.Instance.EnterPortal(portalIndex);
         }
     }
 
-
-    private bool CheckAllMonsterDead()
+    public void SetActiveState(bool state)
     {
-        // 몬스터 전부 잡았는지 확인
-        return false;
+        isActive = state;
     }
 }
