@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyData_Melee1
   m_EditorClassIdentifier: 
   maxHealth: 100
-  hp: 100
+  hp: -300
   atk: 5
   def: 1
   moveSpeed: 2
